@@ -1,0 +1,149 @@
+.league-centre {
+  padding: 120px 20px;
+
+  background: #0f172a;
+
+  color: white;
+}
+
+.centre-grid {
+  max-width: 1400px;
+
+  margin: auto;
+
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+
+  gap: 30px;
+}
+
+.centre-card {
+  background: #1e293b;
+
+  border-radius: 20px;
+
+  padding: 30px;
+
+  border: 1px solid rgba(255, 255, 255, 0.05);
+
+  display: flex;
+
+  flex-direction: column;
+}
+
+.centre-card h3 {
+  margin-bottom: 25px;
+}
+
+.result-row {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding: 15px 0;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.fixture-row {
+  display: flex;
+
+  flex-direction: column;
+
+  padding: 15px 0;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.fixture-row small {
+  color: #94a3b8;
+
+  margin-top: 8px;
+}
+
+.spotlight {
+  align-items: center;
+
+  text-align: center;
+}
+
+.player-avatar {
+  width: 90px;
+
+  height: 90px;
+
+  border-radius: 50%;
+
+  background: #dc2626;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  font-size: 2rem;
+
+  font-weight: bold;
+
+  margin: 20px 0;
+}
+
+.player-stats {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  margin: 30px 0;
+
+  gap: 15px;
+}
+
+.player-stats div {
+  background: #111827;
+
+  padding: 15px;
+
+  border-radius: 12px;
+}
+
+.player-stats strong {
+  display: block;
+
+  font-size: 1.4rem;
+
+  color: #dc2626;
+}
+
+.player-stats span {
+  color: #94a3b8;
+
+  font-size: 0.85rem;
+}
+
+.centre-card button {
+  margin-top: auto;
+
+  background: #dc2626;
+
+  color: white;
+
+  border: none;
+
+  padding: 14px;
+
+  border-radius: 40px;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.centre-card button:hover {
+  background: #ef4444;
+}

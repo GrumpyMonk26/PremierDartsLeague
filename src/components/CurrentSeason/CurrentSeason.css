@@ -1,0 +1,129 @@
+.current-season {
+  padding: 120px 20px;
+
+  background: #111827;
+
+  color: white;
+}
+
+.dashboard-grid {
+  max-width: 1400px;
+
+  margin: auto;
+
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+
+  gap: 30px;
+}
+
+.division-card {
+  background: #1e293b;
+
+  border-radius: 20px;
+
+  padding: 30px;
+
+  transition: 0.3s;
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 25px;
+}
+
+.division-card:hover {
+  transform: translateY(-8px);
+
+  border-color: #dc2626;
+}
+
+.division-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+}
+
+.division-header h3 {
+  margin: 0;
+}
+
+.division-header span {
+  font-size: 0.8rem;
+
+  color: #fbbf24;
+}
+
+.division-body {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 15px;
+}
+
+.division-body p {
+  margin: 0;
+
+  font-size: 0.95rem;
+
+  color: #cbd5e1;
+}
+
+.progress-label {
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-bottom: 10px;
+
+  font-size: 0.9rem;
+}
+
+.progress-bar {
+  height: 10px;
+
+  background: #334155;
+
+  border-radius: 30px;
+
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+
+  background: linear-gradient(90deg, #dc2626, #ef4444);
+
+  border-radius: 30px;
+
+  transition: width 0.5s ease;
+}
+
+.division-card button {
+  margin-top: auto;
+
+  padding: 14px;
+
+  border: none;
+
+  background: #dc2626;
+
+  color: white;
+
+  border-radius: 40px;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.division-card button:hover {
+  background: #ef4444;
+}

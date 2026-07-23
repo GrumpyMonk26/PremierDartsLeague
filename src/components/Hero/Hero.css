@@ -1,0 +1,183 @@
+.hero {
+  position: relative;
+  min-height: 92vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  padding: 120px 20px 40px;
+
+  background:
+    linear-gradient(rgba(7, 12, 22, 0.85), rgba(7, 12, 22, 0.9)),
+    url("../assets/darts-bg.jpg");
+
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(2px);
+}
+
+.hero-content {
+  position: relative;
+  max-width: 900px;
+  z-index: 2;
+}
+
+.hero-established {
+  color: #d32f2f;
+
+  text-transform: uppercase;
+
+  letter-spacing: 3px;
+
+  font-size: 0.9rem;
+
+  font-weight: 700;
+}
+
+.hero h1 {
+  font-size: 4.5rem;
+
+  margin: 20px 0 10px;
+
+  line-height: 1.1;
+}
+
+.hero h2 {
+  font-size: 1.8rem;
+
+  color: #d4d4d4;
+
+  margin-bottom: 30px;
+
+  font-weight: 400;
+}
+
+.hero p {
+  font-size: 1.2rem;
+
+  line-height: 1.8;
+
+  color: #cfcfcf;
+
+  margin-bottom: 40px;
+}
+
+.hero-buttons {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 20px;
+
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  padding: 15px 40px;
+
+  background: #d32f2f;
+
+  color: white;
+
+  border: none;
+
+  border-radius: 50px;
+
+  cursor: pointer;
+
+  font-size: 1rem;
+
+  transition: 0.3s;
+}
+
+.btn-primary:hover {
+  background: #ef5350;
+
+  transform: translateY(-3px);
+}
+
+.btn-secondary {
+  padding: 15px 40px;
+
+  border: 2px solid white;
+
+  background: transparent;
+
+  color: white;
+
+  border-radius: 50px;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.btn-secondary:hover {
+  background: white;
+
+  color: #111;
+}
+
+.hero-stats {
+  position: relative;
+
+  z-index: 2;
+
+  margin-top: 80px;
+
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 60px;
+}
+
+.hero-stats h3 {
+  font-size: 2rem;
+
+  color: #d32f2f;
+}
+
+.hero-stats span {
+  color: #ccc;
+}
+
+@media (max-width: 900px) {
+  .hero h1 {
+    font-size: 3rem;
+  }
+
+  .hero h2 {
+    font-size: 1.3rem;
+  }
+
+  .hero-stats {
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .hero-stats {
+    grid-template-columns: 1fr;
+  }
+}
