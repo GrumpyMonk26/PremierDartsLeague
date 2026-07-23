@@ -27,7 +27,7 @@ function Hero() {
 
       <div className="hero-stats">
         <div>
-          <h3>7</h3>
+          <h3>10</h3>
           <span>Divisions</span>
         </div>
 
