@@ -4,8 +4,8 @@ function LeaguePosition() {
   const standings = [
     { pos: 1, player: "Luke Green", played: 18, points: 36 },
     { pos: 2, player: "Jason Evans", played: 18, points: 31 },
-    { pos: 3, player: "Chris Hall", played: 18, points: 29 },
-    { pos: 4, player: "Ryan James", played: 18, points: 27 },
+    { pos: 3, player: "badger the Bully", played: 18, points: 29 },
+    { pos: 4, player: "Les Pratt", played: 18, points: 27 },
     { pos: 5, player: "Jake Smith", played: 18, points: 22 },
     { pos: 6, player: "Dan Smith", played: 18, points: 20 },
     { pos: 7, player: "James Brown", played: 18, points: 17 },
