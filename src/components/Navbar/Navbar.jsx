@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 const menuItems = [
@@ -49,26 +50,31 @@ export default function Navbar() {
     setActiveDropdown(activeDropdown === title ? null : title);
   };
 
+  const closeMobileMenu = () => {
+    setMobileOpen(false);
+    setActiveDropdown(null);
+  };
+
   return (
     <header className={`navbar ${scrolled ? "navbar--scrolled" : ""}`}>
       <div className="navbar__container">
-        {/* ---------------- LOGO ---------------- */}
+        {/* ---------- Logo ---------- */}
 
-        <a href="/" className="navbar__logo">
+        <Link to="/" className="navbar__logo">
           <div className="navbar__logo-icon">🎯</div>
 
           <div className="navbar__logo-text">
             <span className="navbar__title">PDL</span>
             <span className="navbar__subtitle">Premier League Darts</span>
           </div>
-        </a>
+        </Link>
 
-        {/* ---------------- DESKTOP NAV ---------------- */}
+        {/* ---------- Desktop Navigation ---------- */}
 
         <nav className="navbar__desktop">
-          <a href="/" className="nav-link active">
+          <Link to="/" className="nav-link">
             Home
-          </a>
+          </Link>
 
           {menuItems.map((item) => (
             <div
@@ -77,6 +83,7 @@ export default function Navbar() {
               onMouseLeave={() => setActiveDropdown(null)}
             >
               <button
+                type="button"
                 className="dropdown__button"
                 onMouseEnter={() => setActiveDropdown(item.title)}
                 onClick={() => toggleDropdown(item.title)}
@@ -111,17 +118,18 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* ---------------- DASHBOARD ---------------- */}
+        {/* ---------- Actions ---------- */}
 
         <div className="navbar__actions">
-          <a href="#dashboard" className="dashboard-btn">
-            Dashboard
-          </a>
+          <Link to="/dashboard" className="dashboard-btn">
+            Player Hub
+          </Link>
         </div>
 
-        {/* ---------------- MOBILE BUTTON ---------------- */}
+        {/* ---------- Mobile Button ---------- */}
 
         <button
+          type="button"
           className={`hamburger ${mobileOpen ? "open" : ""}`}
           onClick={() => setMobileOpen(!mobileOpen)}
         >
@@ -131,36 +139,32 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* ---------------- MOBILE MENU ---------------- */}
+      {/* ---------- Mobile Menu ---------- */}
 
       <div className={`mobile-menu ${mobileOpen ? "show" : ""}`}>
-        <a href="/" onClick={() => setMobileOpen(false)}>
+        <Link to="/" onClick={closeMobileMenu}>
           Home
-        </a>
+        </Link>
 
         {menuItems.map((section) => (
           <div className="mobile-section" key={section.title}>
             <h4>{section.title}</h4>
 
             {section.links.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={() => setMobileOpen(false)}
-              >
+              <a key={link.name} href={link.href} onClick={closeMobileMenu}>
                 {link.name}
               </a>
             ))}
           </div>
         ))}
 
-        <a
-          href="#dashboard"
+        <Link
+          to="/dashboard"
           className="dashboard-btn mobile-dashboard"
-          onClick={() => setMobileOpen(false)}
+          onClick={closeMobileMenu}
         >
-          Dashboard
-        </a>
+          Player Hub
+        </Link>
       </div>
     </header>
   );

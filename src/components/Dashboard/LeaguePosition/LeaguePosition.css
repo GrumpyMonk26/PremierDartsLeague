@@ -1,0 +1,148 @@
+.league-position {
+  background: #1e293b;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 20px;
+
+  padding: 35px;
+}
+
+.league-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 35px;
+
+  gap: 20px;
+}
+
+.league-header p {
+  color: #94a3b8;
+
+  margin-top: 8px;
+}
+
+.position-card {
+  text-align: center;
+
+  background: #0f172a;
+
+  padding: 20px 28px;
+
+  border-radius: 15px;
+
+  min-width: 120px;
+}
+
+.position-card span {
+  display: block;
+
+  color: #94a3b8;
+
+  font-size: 0.9rem;
+}
+
+.position-card h1 {
+  color: #dc2626;
+
+  font-size: 3rem;
+
+  margin-top: 10px;
+}
+
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+
+thead {
+  background: #0f172a;
+}
+
+th {
+  padding: 15px;
+
+  text-align: left;
+
+  color: #94a3b8;
+
+  font-weight: 600;
+}
+
+td {
+  padding: 18px 15px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+tbody tr {
+  transition: 0.25s;
+}
+
+tbody tr:hover {
+  background: #263447;
+}
+
+.current-player {
+  background: rgba(220, 38, 38, 0.12);
+
+  border-left: 4px solid #dc2626;
+
+  font-weight: 600;
+}
+
+.current-player:hover {
+  background: rgba(220, 38, 38, 0.18);
+}
+
+.league-footer {
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-top: 25px;
+
+  font-size: 0.9rem;
+
+  color: #94a3b8;
+}
+
+.promotion {
+  color: #22c55e;
+}
+
+.relegation {
+  color: #ef4444;
+}
+
+@media (max-width: 768px) {
+  .league-header {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+
+  .position-card {
+    width: 100%;
+  }
+
+  table {
+    font-size: 0.9rem;
+  }
+
+  th,
+  td {
+    padding: 12px 8px;
+  }
+
+  .league-footer {
+    flex-direction: column;
+
+    gap: 10px;
+  }
+}
