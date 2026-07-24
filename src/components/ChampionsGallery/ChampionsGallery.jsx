@@ -1,5 +1,5 @@
 import "./ChampionsGallery.css";
-import { champions } from "../../data/championsData";
+import { champions } from "../../data/championsData.js";
 
 function ChampionsGallery() {
   return (

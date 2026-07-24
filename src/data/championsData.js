@@ -9,7 +9,7 @@ export const champions = [
   },
   {
     season: "Season 2",
-    champion: "Dan Smith",
+    champion: "Badger The Bully",
     division: "Premier Champion",
     average: "73.15",
     image: "/images/champions/default-player.png",
@@ -17,7 +17,7 @@ export const champions = [
   },
   {
     season: "Season 3",
-    champion: "Luke Green",
+    champion: "Les Pratt",
     division: "Premier Champion",
     average: "75.42",
     image: "/images/champions/default-player.png",

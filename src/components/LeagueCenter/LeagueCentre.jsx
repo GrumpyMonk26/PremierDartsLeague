@@ -5,7 +5,7 @@ import {
   latestResults,
   upcomingFixtures,
   spotlight,
-} from "../../data/leagueData";
+} from "../../data/leagueData.js";
 
 function LeagueCentre() {
   return (
