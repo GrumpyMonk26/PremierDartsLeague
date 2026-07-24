@@ -402,7 +402,8 @@ body {
 }
 
 /* ==========================================================
-   MOBILE MENU
+   MOBILE MENU (default hidden state — outside media query
+   so it doesn't leak onto desktop)
 ========================================================== */
 
 .mobile-menu {
@@ -426,32 +427,46 @@ body {
     display: block;
   }
 
-  .mobile-menu {
-    display: flex;
-    flex-direction: column;
+  /* ==========================================================
+   MOBILE MENU
+========================================================== */
 
-    position: absolute;
+  .mobile-menu {
+    position: fixed;
 
     top: 86px;
     left: 0;
+    right: 0;
 
-    width: 100%;
+    height: calc(100dvh - 86px);
 
-    background: rgba(17, 24, 39, 0.98);
+    background: #111827;
 
-    backdrop-filter: blur(18px);
+    display: flex;
+    flex-direction: column;
 
-    overflow: hidden;
+    overflow-y: auto;
 
-    max-height: 0;
+    -webkit-overflow-scrolling: touch;
 
-    transition: max-height 0.4s ease;
+    transform: translateY(-100%);
 
-    border-bottom: 1px solid var(--border);
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+      transform 0.35s ease,
+      opacity 0.35s ease;
+
+    z-index: 998;
   }
 
   .mobile-menu.show {
-    max-height: 700px;
+    transform: translateY(0);
+
+    opacity: 1;
+
+    visibility: visible;
   }
 
   .mobile-menu > a {
