@@ -1,0 +1,223 @@
+/* ==========================================================
+   RULE CARD
+========================================================== */
+
+.rule-card {
+  background: rgba(17, 24, 39, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  overflow: hidden;
+  backdrop-filter: blur(14px);
+  transition: all 0.35s ease;
+}
+
+.rule-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(239, 68, 68, 0.45);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+.rule-card.open {
+  border-color: #ef4444;
+}
+
+/* ==========================================================
+   HEADER
+========================================================== */
+
+.rule-card__header {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #fff;
+  padding: 24px 28px;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  text-align: left;
+}
+
+.rule-card__header:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.rule-card__title-group {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.rule-card__icon {
+  width: 60px;
+  height: 60px;
+
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+
+  font-size: 1.8rem;
+
+  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.35);
+
+  flex-shrink: 0;
+}
+
+.rule-card__title-group h3 {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.rule-card__arrow {
+  font-size: 1rem;
+  color: #94a3b8;
+  transition: transform 0.35s ease;
+}
+
+.rule-card__arrow.rotate {
+  transform: rotate(180deg);
+}
+
+/* ==========================================================
+   CONTENT
+========================================================== */
+
+.rule-card__content {
+  max-height: 0;
+  overflow: hidden;
+  transition:
+    max-height 0.45s ease,
+    padding 0.35s ease;
+
+  padding: 0 28px;
+}
+
+.rule-card__content.show {
+  max-height: 1200px;
+  padding: 0 28px 28px;
+}
+
+/* ==========================================================
+   RULE LIST
+========================================================== */
+
+.rule-card__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.rule-card__list li {
+  position: relative;
+
+  padding-left: 30px;
+  margin-bottom: 18px;
+
+  color: #cbd5e1;
+  line-height: 1.7;
+  font-size: 0.98rem;
+}
+
+.rule-card__list li::before {
+  content: "✔";
+
+  position: absolute;
+  left: 0;
+  top: 1px;
+
+  color: #ef4444;
+  font-weight: bold;
+}
+
+/* ==========================================================
+   HIGHLIGHT BOX
+========================================================== */
+
+.rule-card__highlight {
+  margin-top: 28px;
+
+  background: rgba(239, 68, 68, 0.08);
+
+  border-left: 4px solid #ef4444;
+
+  padding: 18px 20px;
+
+  border-radius: 12px;
+}
+
+.rule-card__highlight h4 {
+  margin: 0 0 8px;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.rule-card__highlight p {
+  margin: 0;
+  color: #d1d5db;
+  line-height: 1.6;
+}
+
+/* ==========================================================
+   QUOTE
+========================================================== */
+
+.rule-card__quote {
+  margin-top: 30px;
+
+  padding: 20px;
+
+  text-align: center;
+
+  font-size: 1.2rem;
+  font-style: italic;
+  font-weight: 600;
+
+  color: #fff;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 768px) {
+  .rule-card__header {
+    padding: 20px;
+  }
+
+  .rule-card__title-group {
+    gap: 14px;
+  }
+
+  .rule-card__icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.4rem;
+  }
+
+  .rule-card__title-group h3 {
+    font-size: 1.1rem;
+  }
+
+  .rule-card__content {
+    padding: 0 20px;
+  }
+
+  .rule-card__content.show {
+    padding: 0 20px 20px;
+  }
+
+  .rule-card__list li {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+}

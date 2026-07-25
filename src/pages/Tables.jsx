@@ -14,9 +14,7 @@ function Tables() {
       <div className="section-header">
         <span className="section-tag">LEAGUE TABLES</span>
         <h2>Division Standings</h2>
-        <p>
-          Current standings across all 10 divisions of Premier League Darts.
-        </p>
+        <p>Current standings for all divisions.</p>
       </div>
 
       <DivisionPicker

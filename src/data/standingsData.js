@@ -112,7 +112,7 @@ const rawDivisions = {
     ["Vince Carr", 2, 6, 32, 46],
     ["Norman Blythe", 2, 6, 30, 49],
   ],
-  "Division 19": [
+  "Division 9": [
     ["Simon Wharton", 8, 0, 52, 28],
     ["Peter Aldous", 6, 2, 45, 35],
     ["Martin Coe", 5, 3, 43, 38],

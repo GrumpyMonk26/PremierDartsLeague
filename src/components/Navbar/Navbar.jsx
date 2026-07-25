@@ -6,10 +6,10 @@ const menuItems = [
   {
     title: "League",
     links: [
-      { name: "Fixtures", href: "#fixtures" },
+      { name: "Fixtures", to: "/fixtures" },
       { name: "Results", href: "#results" },
       { name: "Tables", to: "/tables" },
-      { name: "Rules", href: "#rules" },
+      { name: "Rules", to: "/rules" },
     ],
   },
   {
@@ -34,155 +34,160 @@ const menuItems = [
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const [mobileSection, setMobileSection] = useState(null);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const toggleDropdown = (title) => {
-    setActiveDropdown(activeDropdown === title ? null : title);
-  };
+  useEffect(() => {
+    document.body.classList.toggle("menu-open", mobileOpen);
+    return () => document.body.classList.remove("menu-open");
+  }, [mobileOpen]);
 
   const closeMobileMenu = () => {
     setMobileOpen(false);
     setActiveDropdown(null);
+    setMobileSection(null);
   };
 
+  const toggleDropdown = (title) =>
+    setActiveDropdown((prev) => (prev === title ? null : title));
+
   return (
-    <header className={`navbar ${scrolled ? "navbar--scrolled" : ""}`}>
-      <div className="navbar__container">
-        {/* ---------- Logo ---------- */}
-
-        <Link to="/" className="navbar__logo">
-          <div className="navbar__logo-icon">🎯</div>
-
-          <div className="navbar__logo-text">
-            <span className="navbar__title">PDL</span>
-            <span className="navbar__subtitle">Premier League Darts</span>
-          </div>
-        </Link>
-
-        {/* ---------- Desktop Navigation ---------- */}
-
-        <nav className="navbar__desktop">
-          <Link to="/" className="nav-link">
-            Home
-          </Link>
-
-          {menuItems.map((item) => (
-            <div
-              className="dropdown"
-              key={item.title}
-              onMouseLeave={() => setActiveDropdown(null)}
-            >
-              <button
-                type="button"
-                className="dropdown__button"
-                onMouseEnter={() => setActiveDropdown(item.title)}
-                onClick={() => toggleDropdown(item.title)}
-              >
-                {item.title}
-
-                <span
-                  className={`dropdown__arrow ${
-                    activeDropdown === item.title ? "rotate" : ""
-                  }`}
-                >
-                  ▼
-                </span>
-              </button>
-
-              <div
-                className={`dropdown__menu ${
-                  activeDropdown === item.title ? "show" : ""
-                }`}
-              >
-                {item.links.map((link) =>
-                  link.to ? (
-                    <Link
-                      key={link.name}
-                      to={link.to}
-                      className="dropdown__item"
-                      onClick={() => setActiveDropdown(null)}
-                    >
-                      {link.name}
-                    </Link>
-                  ) : (
-                    <a
-                      key={link.name}
-                      href={link.href}
-                      className="dropdown__item"
-                    >
-                      {link.name}
-                    </a>
-                  ),
-                )}
-              </div>
+    <>
+      <header className={`navbar ${scrolled ? "navbar--scrolled" : ""}`}>
+        <div className="navbar__container">
+          <Link to="/" className="navbar__logo" onClick={closeMobileMenu}>
+            <div className="navbar__logo-icon">🎯</div>
+            <div className="navbar__logo-text">
+              <span className="navbar__title">PDL</span>
+              <span className="navbar__subtitle">Premier League Darts</span>
             </div>
-          ))}
-        </nav>
-
-        {/* ---------- Actions ---------- */}
-
-        <div className="navbar__actions">
-          <Link to="/dashboard" className="dashboard-btn">
-            Player Hub
           </Link>
+
+          <nav className="navbar__desktop">
+            <Link to="/" className="nav-link">
+              Home
+            </Link>
+
+            {menuItems.map((item) => (
+              <div
+                key={item.title}
+                className="dropdown"
+                onMouseLeave={() => setActiveDropdown(null)}
+              >
+                <button
+                  type="button"
+                  className="dropdown__button"
+                  onMouseEnter={() => setActiveDropdown(item.title)}
+                  onClick={() => toggleDropdown(item.title)}
+                >
+                  {item.title}
+                  <span
+                    className={`dropdown__arrow ${activeDropdown === item.title ? "rotate" : ""}`}
+                  >
+                    ▼
+                  </span>
+                </button>
+
+                <div
+                  className={`dropdown__menu ${activeDropdown === item.title ? "show" : ""}`}
+                >
+                  <div className="dropdown__menu-panel">
+                    {item.links.map((link) =>
+                      link.to ? (
+                        <Link
+                          key={link.name}
+                          to={link.to}
+                          className="dropdown__item"
+                          onClick={() => setActiveDropdown(null)}
+                        >
+                          {link.name}
+                        </Link>
+                      ) : (
+                        <a
+                          key={link.name}
+                          href={link.href}
+                          className="dropdown__item"
+                        >
+                          {link.name}
+                        </a>
+                      ),
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </nav>
+
+          <div className="navbar__actions">
+            <Link to="/dashboard" className="dashboard-btn">
+              Player Hub
+            </Link>
+          </div>
+
+          <button
+            type="button"
+            className={`hamburger ${mobileOpen ? "open" : ""}`}
+            onClick={() => setMobileOpen((o) => !o)}
+            aria-label="Toggle navigation"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
-
-        {/* ---------- Mobile Button ---------- */}
-
-        <button
-          type="button"
-          className={`hamburger ${mobileOpen ? "open" : ""}`}
-          onClick={() => setMobileOpen(!mobileOpen)}
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
-
-      {/* ---------- Mobile Menu ---------- */}
+      </header>
 
       <div className={`mobile-menu ${mobileOpen ? "show" : ""}`}>
-        <Link to="/" onClick={closeMobileMenu}>
-          Home
-        </Link>
-
-        {menuItems.map((section) => (
-          <div className="mobile-section" key={section.title}>
-            <h4>{section.title}</h4>
-
-            {section.links.map((link) =>
-              link.to ? (
-                <Link key={link.name} to={link.to} onClick={closeMobileMenu}>
-                  {link.name}
-                </Link>
-              ) : (
-                <a key={link.name} href={link.href} onClick={closeMobileMenu}>
-                  {link.name}
-                </a>
-              ),
-            )}
-          </div>
-        ))}
-
         <Link
           to="/dashboard"
           className="dashboard-btn mobile-dashboard"
           onClick={closeMobileMenu}
         >
-          Player Hub
+          🎯 Player Hub
         </Link>
+
+        <Link to="/" className="mobile-home" onClick={closeMobileMenu}>
+          Home
+        </Link>
+
+        {menuItems.map((section) => (
+          <div key={section.title} className="mobile-section">
+            <button
+              className="mobile-section-title"
+              onClick={() =>
+                setMobileSection((prev) =>
+                  prev === section.title ? null : section.title,
+                )
+              }
+            >
+              <span>{section.title}</span>
+              <span>{mobileSection === section.title ? "−" : "+"}</span>
+            </button>
+
+            <div
+              className={`mobile-links ${mobileSection === section.title ? "show" : ""}`}
+            >
+              {section.links.map((link) =>
+                link.to ? (
+                  <Link key={link.name} to={link.to} onClick={closeMobileMenu}>
+                    {link.name}
+                  </Link>
+                ) : (
+                  <a key={link.name} href={link.href} onClick={closeMobileMenu}>
+                    {link.name}
+                  </a>
+                ),
+              )}
+            </div>
+          </div>
+        ))}
       </div>
-    </header>
+    </>
   );
 }

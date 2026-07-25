@@ -6,6 +6,8 @@ import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import Tables from "./pages/Tables";
+import Rules from "./pages/Rules";
+import Fixtures from "./pages/Fixtures";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/tables" element={<Tables />} />
+        <Route path="/rules" element={<Rules />} />
+        <Route path="/fixtures" element={<Fixtures />} />
       </Routes>
 
       <Footer />
