@@ -8,7 +8,7 @@ const menuItems = [
     links: [
       { name: "Fixtures", href: "#fixtures" },
       { name: "Results", href: "#results" },
-      { name: "Tables", href: "#tables" },
+      { name: "Tables", to: "/tables" },
       { name: "Rules", href: "#rules" },
     ],
   },
@@ -104,15 +104,26 @@ export default function Navbar() {
                   activeDropdown === item.title ? "show" : ""
                 }`}
               >
-                {item.links.map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    className="dropdown__item"
-                  >
-                    {link.name}
-                  </a>
-                ))}
+                {item.links.map((link) =>
+                  link.to ? (
+                    <Link
+                      key={link.name}
+                      to={link.to}
+                      className="dropdown__item"
+                      onClick={() => setActiveDropdown(null)}
+                    >
+                      {link.name}
+                    </Link>
+                  ) : (
+                    <a
+                      key={link.name}
+                      href={link.href}
+                      className="dropdown__item"
+                    >
+                      {link.name}
+                    </a>
+                  ),
+                )}
               </div>
             </div>
           ))}
@@ -150,11 +161,17 @@ export default function Navbar() {
           <div className="mobile-section" key={section.title}>
             <h4>{section.title}</h4>
 
-            {section.links.map((link) => (
-              <a key={link.name} href={link.href} onClick={closeMobileMenu}>
-                {link.name}
-              </a>
-            ))}
+            {section.links.map((link) =>
+              link.to ? (
+                <Link key={link.name} to={link.to} onClick={closeMobileMenu}>
+                  {link.name}
+                </Link>
+              ) : (
+                <a key={link.name} href={link.href} onClick={closeMobileMenu}>
+                  {link.name}
+                </a>
+              ),
+            )}
           </div>
         ))}
 

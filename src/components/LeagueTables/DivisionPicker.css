@@ -1,0 +1,36 @@
+.division-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  margin-bottom: 28px;
+}
+
+.division-picker__item {
+  padding: 10px 20px;
+
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+
+  color: var(--text-muted);
+
+  font-family: "Outfit", sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+.division-picker__item:hover {
+  color: var(--text);
+  border-color: var(--red);
+}
+
+.division-picker__item.active {
+  background: var(--red);
+  border-color: var(--red);
+  color: white;
+}
