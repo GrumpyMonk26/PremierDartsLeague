@@ -7,7 +7,6 @@ const menuItems = [
     title: "League",
     links: [
       { name: "Fixtures", to: "/fixtures" },
-      { name: "Results", href: "#results" },
       { name: "Tables", to: "/tables" },
       { name: "Rules", to: "/rules" },
     ],
