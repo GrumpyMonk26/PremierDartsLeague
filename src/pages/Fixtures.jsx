@@ -20,6 +20,9 @@ export default function Fixtures() {
     { key: "division4", name: "Division 4" },
     { key: "division5", name: "Division 5" },
     { key: "division6", name: "Division 6" },
+    { key: "division7", name: "Division 7" },
+    { key: "division8", name: "Division 8" },
+    { key: "division8", name: "Division 9" },
   ];
 
   const [fixtures, setFixtures] = useState([]);
