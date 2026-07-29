@@ -30,6 +30,8 @@ export default function Fixtures() {
     async function loadFixtures() {
       const data = await getFixtures(selectedDivision);
 
+      console.log("Fixtures API:", data);
+
       setFixtures(data);
 
       if (data.length > 0) {
