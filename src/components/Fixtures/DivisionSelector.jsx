@@ -12,13 +12,13 @@ export default function DivisionSelector({
       <div className="division-buttons">
         {divisions.map((division) => (
           <button
-            key={division}
+            key={division.key}
             className={`division-button ${
-              selectedDivision === division ? "active" : ""
+              selectedDivision === division.key ? "active" : ""
             }`}
-            onClick={() => onDivisionChange(division)}
+            onClick={() => onDivisionChange(division.key)}
           >
-            {division}
+            {division.name}
           </button>
         ))}
       </div>

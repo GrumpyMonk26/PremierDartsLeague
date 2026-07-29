@@ -273,19 +273,23 @@
 }
 
 .player-avatar {
-  width: 54px;
-  height: 54px;
-
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
-
-  background: #ef4444;
-  color: white;
-
   display: flex;
-  justify-content: center;
   align-items: center;
-
+  justify-content: center;
   font-weight: 700;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.home-avatar {
+  background: #ef4444;
+}
+
+.away-avatar {
+  background: #3b82f6;
 }
 
 .fixture-player span {

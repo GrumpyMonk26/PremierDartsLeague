@@ -7,7 +7,7 @@ export default function FixtureCard({ fixture }) {
     <article className="fixture-card">
       <div className="fixture-players">
         <div className="fixture-player">
-          <div className="player-avatar">{fixture.home.initials}</div>
+          <div className="player-avatar home-avatar">H</div>
 
           <span>{fixture.home.name}</span>
         </div>
@@ -33,7 +33,7 @@ export default function FixtureCard({ fixture }) {
         </div>
 
         <div className="fixture-player">
-          <div className="player-avatar">{fixture.away.initials}</div>
+          <div className="player-avatar away-avatar">A</div>
 
           <span>{fixture.away.name}</span>
         </div>
