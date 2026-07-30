@@ -1,13 +1,9 @@
 import "./Fixtures.css";
 
 export default function FixturesStats({ fixtures }) {
-  const played = fixtures.filter(
-    (fixture) => fixture.status === "Completed",
-  ).length;
+  const played = fixtures.filter((fixture) => fixture.played).length;
 
-  const pending = fixtures.filter(
-    (fixture) => fixture.status === "Pending",
-  ).length;
+  const pending = fixtures.filter((fixture) => !fixture.played).length;
 
   return (
     <section className="fixtures-stats">
