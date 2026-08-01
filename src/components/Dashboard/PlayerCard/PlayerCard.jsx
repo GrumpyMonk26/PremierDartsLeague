@@ -1,31 +1,40 @@
 import "./PlayerCard.css";
 
-function PlayerCard() {
+function PlayerCard({ player }) {
+  if (!player) return null;
+
+  const initials = player.player.displayName
+    .split(" ")
+    .map((name) => name[0])
+    .join("")
+    .substring(0, 2)
+    .toUpperCase();
+
   return (
     <section className="player-card">
-      <div className="player-avatar">JE</div>
+      <div className="player-avatar">{initials}</div>
 
-      <h2>Jason Evans</h2>
+      <h2>{player.player.displayName}</h2>
 
-      <span className="division-badge">Division One</span>
+      <span className="division-badge">{player.player.division}</span>
 
       <div className="player-average">
-        <span>Current Average</span>
+        <span>Season Average</span>
 
-        <h1>74.82</h1>
+        <h1>{player.player.average}</h1>
       </div>
 
       <div className="player-details">
         <div>
           <span>Current Rank</span>
 
-          <strong>#2</strong>
+          <strong>#{player.league.position}</strong>
         </div>
 
         <div>
-          <span>Season</span>
+          <span>League Points</span>
 
-          <strong>Season 5</strong>
+          <strong>{player.stats.points}</strong>
         </div>
       </div>
 
