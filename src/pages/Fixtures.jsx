@@ -14,15 +14,15 @@ import { getFixtures } from "../Services/FixturesServices";
 export default function Fixtures() {
   const divisions = [
     { key: "premier", name: "Premier" },
-    { key: "division1", name: "Division 1" },
-    { key: "division2", name: "Division 2" },
-    { key: "division3", name: "Division 3" },
-    { key: "division4", name: "Division 4" },
-    { key: "division5", name: "Division 5" },
-    { key: "division6", name: "Division 6" },
-    { key: "division7", name: "Division 7" },
-    { key: "division8", name: "Division 8" },
-    { key: "division8", name: "Division 9" },
+    { key: "div1", name: "Division 1" },
+    { key: "div2", name: "Division 2" },
+    { key: "div3", name: "Division 3" },
+    { key: "div4", name: "Division 4" },
+    { key: "div5", name: "Division 5" },
+    { key: "div6", name: "Division 6" },
+    { key: "div7", name: "Division 7" },
+    { key: "div8", name: "Division 8" },
+    { key: "div9", name: "Division 9" },
   ];
 
   const [fixtures, setFixtures] = useState([]);
