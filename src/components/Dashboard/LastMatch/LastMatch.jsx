@@ -7,43 +7,19 @@ import {
   FaTrophy,
 } from "react-icons/fa";
 
-function LastMatch() {
-  const match = {
-    date: "21 July 2026",
-    result: "Won",
+function LastMatch({ player }) {
+  if (!player || !player.lastMatch) {
+    return null;
+  }
 
-    player: {
-      name: "Jason Evans",
-      average: 76.82,
-      first9: 84.6,
-      checkout: 120,
-      bestLeg: 15,
-    },
-
-    opponent: {
-      name: "Dan Smith",
-      average: 71.34,
-    },
-
-    score: {
-      player: 6,
-      opponent: 4,
-    },
-
-    stats: {
-      oneEighties: 3,
-      oneForties: 7,
-      tonPlus: 11,
-      highestFinish: 120,
-    },
-  };
+  const match = player.lastMatch;
 
   return (
     <section className="last-match">
       <div className="match-header">
         <div>
           <h2>Last Match</h2>
-          <p>{match.date}</p>
+          <p>{match.fixture}</p>
         </div>
 
         <span className="match-result">{match.result}</span>
