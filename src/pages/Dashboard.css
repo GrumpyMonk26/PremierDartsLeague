@@ -6,6 +6,32 @@
   color: white;
 }
 
+.dashboard-placeholder {
+  margin-top: 50px;
+  padding: 60px 30px;
+  background: #1e293b;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  text-align: center;
+}
+
+.placeholder-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.dashboard-placeholder h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.dashboard-placeholder p {
+  color: #94a3b8;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
 /* ==========================
    Hero
 ========================== */

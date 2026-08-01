@@ -1,3 +1,7 @@
+import { useEffect, useState } from "react";
+
+import { getDashboard } from "../Services/DashboardService";
+
 import "./Dashboard.css";
 
 import PlayerSearch from "../components/Dashboard/PlayerSearch/PlayerSearch";
@@ -7,6 +11,26 @@ import LastMatch from "../components/Dashboard/LastMatch/LastMatch";
 import LeaguePosition from "../components/Dashboard/LeaguePosition/LeaguePosition";
 
 function Dashboard() {
+  const [selectedPlayer, setSelectedPlayer] = useState(null);
+  const [playerData, setPlayerData] = useState(null);
+
+  useEffect(() => {
+    if (!selectedPlayer) return;
+
+    async function loadDashboard() {
+      try {
+        const data = await getDashboard(selectedPlayer);
+        setPlayerData(data);
+      } catch (err) {
+        console.error("Failed to load dashboard", err);
+      }
+    }
+
+    loadDashboard();
+  }, [selectedPlayer]);
+
+  console.log(playerData);
+
   return (
     <main className="dashboard">
       {/* Hero */}
@@ -27,19 +51,41 @@ function Dashboard() {
 
       {/* Dashboard Content */}
       <section className="dashboard-content">
-        <PlayerSearch />
+        <PlayerSearch onPlayerSelected={setSelectedPlayer} />
 
-        <div className="dashboard-layout">
-          <div className="left-column">
-            <PlayerCard />
-            <QuickStats />
-          </div>
+        {selectedPlayer && !playerData ? (
+          <section className="dashboard-placeholder">
+            <div className="placeholder-icon">⏳</div>
 
-          <div className="right-column">
-            <LeaguePosition />
-            <LastMatch />
+            <h2>Loading Player...</h2>
+
+            <p>Please wait while we load your dashboard.</p>
+          </section>
+        ) : playerData ? (
+          <div className="dashboard-layout">
+            <div className="left-column">
+              <PlayerCard player={playerData} />
+              <QuickStats player={playerData} />
+            </div>
+
+            <div className="right-column">
+              <LeaguePosition player={playerData} />
+              <LastMatch player={playerData} />
+            </div>
           </div>
-        </div>
+        ) : (
+          <section className="dashboard-placeholder">
+            <div className="placeholder-icon">🎯</div>
+
+            <h2>Select Your Player Profile</h2>
+
+            <p>
+              Search for your DartCounter profile above to unlock your
+              dashboard, league statistics, recent matches and season
+              performance.
+            </p>
+          </section>
+        )}
       </section>
     </main>
   );

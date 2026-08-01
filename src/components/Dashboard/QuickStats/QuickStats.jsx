@@ -1,40 +1,44 @@
 import "./QuickStats.css";
 
-function QuickStats() {
+function QuickStats({ player }) {
+  if (!player || !player.stats) {
+    return null;
+  }
+
+  const winPercentage =
+    player.stats.matches > 0
+      ? `${Math.round((player.stats.wins / player.stats.matches) * 100)}%`
+      : "0%";
+
   const stats = [
     {
       title: "Matches",
-      value: 18,
+      value: player.stats.matches,
       icon: "🎯",
     },
-
     {
       title: "Win %",
-      value: "83%",
+      value: winPercentage,
       icon: "🏆",
     },
-
     {
       title: "180s",
-      value: 27,
+      value: player.stats.oneEighties,
       icon: "💥",
     },
-
     {
-      title: "Ton+ Finishes",
-      value: 142,
-      icon: "🔥",
+      title: "Season Average",
+      value: player.player.average,
+      icon: "📊",
     },
-
     {
       title: "Highest Checkout",
-      value: 170,
+      value: player.stats.highestCheckout,
       icon: "🎯",
     },
-
     {
       title: "League Points",
-      value: 31,
+      value: player.stats.points,
       icon: "📈",
     },
   ];
