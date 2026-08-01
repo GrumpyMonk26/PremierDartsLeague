@@ -1,62 +1,45 @@
 .league-position {
   background: #1e293b;
-
   border: 1px solid rgba(255, 255, 255, 0.08);
-
   border-radius: 20px;
-
   padding: 35px;
 }
 
 .league-header {
   display: flex;
-
   justify-content: space-between;
-
   align-items: center;
-
   margin-bottom: 35px;
-
   gap: 20px;
 }
 
 .league-header p {
   color: #94a3b8;
-
   margin-top: 8px;
 }
 
 .position-card {
   text-align: center;
-
   background: #0f172a;
-
   padding: 20px 28px;
-
   border-radius: 15px;
-
   min-width: 120px;
 }
 
 .position-card span {
   display: block;
-
   color: #94a3b8;
-
   font-size: 0.9rem;
 }
 
 .position-card h1 {
   color: #dc2626;
-
   font-size: 3rem;
-
   margin-top: 10px;
 }
 
 table {
   width: 100%;
-
   border-collapse: collapse;
 }
 
@@ -66,64 +49,108 @@ thead {
 
 th {
   padding: 15px;
-
   text-align: left;
-
   color: #94a3b8;
-
   font-weight: 600;
 }
 
 td {
   padding: 18px 15px;
-
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 tbody tr {
-  transition: 0.25s;
+  transition: all 0.25s ease;
 }
 
-tbody tr:hover {
+tbody tr:hover td {
   background: #263447;
 }
 
+/* ==========================
+   Current Player Highlight
+========================== */
+
 .current-player {
-  background: rgba(220, 38, 38, 0.12);
-
-  border-left: 4px solid #dc2626;
-
-  font-weight: 600;
+  font-weight: 700;
 }
 
-.current-player:hover {
-  background: rgba(220, 38, 38, 0.18);
+.current-player td {
+  transition: background 0.25s ease;
 }
+
+.current-player td:first-child {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.current-player td:last-child {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+/* Promotion (1st & 2nd) */
+
+.current-player.promotion td {
+  background: rgba(34, 197, 94, 0.18);
+}
+
+.current-player.promotion td:first-child {
+  border-left: 5px solid #22c55e;
+}
+
+/* Mid Table (3rd-6th) */
+
+.current-player.midtable td {
+  background: rgba(245, 158, 11, 0.18);
+}
+
+.current-player.midtable td:first-child {
+  border-left: 5px solid #f59e0b;
+}
+
+/* Relegation (7th & 8th) */
+
+.current-player.relegation td {
+  background: rgba(239, 68, 68, 0.18);
+}
+
+.current-player.relegation td:first-child {
+  border-left: 5px solid #ef4444;
+}
+
+/* Slightly brighten highlighted row on hover */
+
+.current-player:hover td {
+  filter: brightness(1.08);
+}
+
+/* ==========================
+   Footer
+========================== */
 
 .league-footer {
   display: flex;
-
   justify-content: space-between;
-
   margin-top: 25px;
-
   font-size: 0.9rem;
-
-  color: #94a3b8;
 }
 
-.promotion {
+.league-footer .promotion {
   color: #22c55e;
 }
 
-.relegation {
+.league-footer .relegation {
   color: #ef4444;
 }
+
+/* ==========================
+   Mobile
+========================== */
 
 @media (max-width: 768px) {
   .league-header {
     flex-direction: column;
-
     align-items: flex-start;
   }
 
@@ -142,7 +169,6 @@ tbody tr:hover {
 
   .league-footer {
     flex-direction: column;
-
     gap: 10px;
   }
 }

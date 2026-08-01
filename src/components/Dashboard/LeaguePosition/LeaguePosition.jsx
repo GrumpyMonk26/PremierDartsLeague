@@ -1,22 +1,17 @@
 import "./LeaguePosition.css";
 
-function LeaguePosition() {
-  const standings = [
-    { pos: 1, player: "Luke Green", played: 18, points: 36 },
-    { pos: 2, player: "Jason Evans", played: 18, points: 31 },
-    { pos: 3, player: "badger the Bully", played: 18, points: 29 },
-    { pos: 4, player: "Les Pratt", played: 18, points: 27 },
-    { pos: 5, player: "Jake Smith", played: 18, points: 22 },
-    { pos: 6, player: "Dan Smith", played: 18, points: 20 },
-    { pos: 7, player: "James Brown", played: 18, points: 17 },
-    { pos: 8, player: "Mark Evans", played: 18, points: 14 },
-  ];
+function LeaguePosition({ player }) {
+  if (!player || !player.league) {
+    return null;
+  }
+
+  const table = player.league.table || [];
 
   return (
     <section className="league-position">
       <div className="league-header">
         <div>
-          <h2>Division One</h2>
+          <h2>{player.player.division}</h2>
 
           <p>Your current league position</p>
         </div>
@@ -24,7 +19,7 @@ function LeaguePosition() {
         <div className="position-card">
           <span>Position</span>
 
-          <h1>2nd</h1>
+          <h1>#{player.league.position}</h1>
         </div>
       </div>
 
@@ -32,30 +27,51 @@ function LeaguePosition() {
         <thead>
           <tr>
             <th>Pos</th>
-
             <th>Player</th>
-
             <th>P</th>
-
+            <th>W</th>
+            <th>D</th>
+            <th>L</th>
+            <th>LF</th>
+            <th>LA</th>
+            <th>LD</th>
             <th>Pts</th>
           </tr>
         </thead>
 
         <tbody>
-          {standings.map((player) => (
+          {table.map((row) => (
             <tr
-              key={player.pos}
+              key={row.position}
               className={
-                player.player === "Jason Evans" ? "current-player" : ""
+                row.isCurrentPlayer
+                  ? row.position <= 2
+                    ? "current-player promotion"
+                    : row.position >= 7
+                      ? "current-player relegation"
+                      : "current-player midtable"
+                  : ""
               }
             >
-              <td>{player.pos}</td>
+              <td>{row.position}</td>
 
-              <td>{player.player}</td>
+              <td>{row.name}</td>
 
-              <td>{player.played}</td>
+              <td>{row.played}</td>
 
-              <td>{player.points}</td>
+              <td>{row.wins}</td>
+
+              <td>{row.draws}</td>
+
+              <td>{row.losses}</td>
+
+              <td>{row.legsWon}</td>
+
+              <td>{row.legsLost}</td>
+
+              <td>{row.legDifference}</td>
+
+              <td>{row.points}</td>
             </tr>
           ))}
         </tbody>
