@@ -1,4 +1,4 @@
-.player-card {
+/* .player-card {
   background: #1e293b;
 
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -8,6 +8,18 @@
   padding: 35px;
 
   text-align: center;
+} */
+
+.player-card {
+  background: #1e293b;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 35px;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .player-avatar {
@@ -106,7 +118,7 @@
   font-size: 1.2rem;
 }
 
-.favourite-button {
+/* .favourite-button {
   width: 100%;
 
   padding: 16px;
@@ -126,6 +138,21 @@
   cursor: pointer;
 
   transition: 0.3s;
+} */
+
+.favourite-button {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 14px;
+  background: #dc2626;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+
+  margin-top: auto;
 }
 
 .favourite-button:hover {

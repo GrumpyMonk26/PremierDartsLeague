@@ -14,15 +14,36 @@ function LastMatch({ player }) {
 
   const match = player.lastMatch;
 
+  const playerWon = match.score.player > match.score.opponent;
+  const playerLost = match.score.player < match.score.opponent;
+
+  const playerScoreClass = playerWon ? "winner" : playerLost ? "loser" : "draw";
+
+  const opponentScoreClass = playerWon
+    ? "loser"
+    : playerLost
+      ? "winner"
+      : "draw";
+
   return (
     <section className="last-match">
       <div className="match-header">
         <div>
           <h2>Last Match</h2>
-          <p>{match.fixture}</p>
+          <h4>Fixture - {match.fixture}</h4>
         </div>
 
-        <span className="match-result">{match.result}</span>
+        <span
+          className={`match-result ${
+            match.result === "Won"
+              ? "won"
+              : match.result === "Lost"
+                ? "lost"
+                : "draw"
+          }`}
+        >
+          {match.result.toUpperCase()}
+        </span>
       </div>
 
       <div className="scoreboard">
@@ -31,12 +52,20 @@ function LastMatch({ player }) {
           <span>Avg {match.player.average}</span>
         </div>
 
-        <div className="score">
+        {/* <div className="score">
           <span>{match.score.player}</span>
 
           <small>-</small>
 
           <span>{match.score.opponent}</span>
+        </div> */}
+
+        <div className="score">
+          <span className={playerScoreClass}>{match.score.player}</span>
+
+          <small>-</small>
+
+          <span className={opponentScoreClass}>{match.score.opponent}</span>
         </div>
 
         <div className="player-card-small">
