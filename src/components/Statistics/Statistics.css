@@ -1,0 +1,368 @@
+/* ==================================================
+   Statistics Hero
+================================================== */
+
+.statistics-hero {
+  position: relative;
+  min-height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+
+  background:
+    linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)),
+    url("https://images.unsplash.com/photo-1518391846015-55a9cc003b25?auto=format&fit=crop&w=1600&q=80")
+      center/cover no-repeat;
+}
+
+.statistics-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(220, 38, 38, 0.15),
+    transparent 70%
+  );
+}
+
+.statistics-hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  padding: 40px 20px;
+}
+
+.statistics-hero__tag {
+  display: inline-block;
+  padding: 8px 18px;
+  margin-bottom: 20px;
+
+  border-radius: 999px;
+
+  background: rgba(220, 38, 38, 0.18);
+  color: #f87171;
+
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.statistics-hero h1 {
+  color: white;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  margin-bottom: 20px;
+}
+
+.statistics-hero p {
+  max-width: 700px;
+  margin: auto;
+
+  color: #cbd5e1;
+  font-size: 1.15rem;
+  line-height: 1.8;
+}
+
+/* ==================================================
+   Statistics Grid
+================================================== */
+
+.statistics-grid-section {
+  padding: 80px 20px;
+}
+
+.statistics-grid {
+  max-width: 1500px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px;
+}
+
+/* ==================================================
+   Statistic Card
+================================================== */
+
+.stat-card {
+  background: #1e293b;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  overflow: hidden;
+
+  transition: 0.25s;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+
+  border-color: rgba(220, 38, 38, 0.35);
+
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* ==================================================
+   Card Header
+================================================== */
+
+.stat-card-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  padding: 24px 28px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.stat-card-icon {
+  width: 58px;
+  height: 58px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: linear-gradient(135deg, #dc2626, #991b1b);
+
+  font-size: 1.5rem;
+}
+
+.stat-card-header h2 {
+  margin: 0;
+
+  color: white;
+}
+
+.stat-card-header p {
+  margin-top: 4px;
+
+  color: #94a3b8;
+}
+
+.stat-card-body {
+  padding: 0;
+}
+
+/* ==================================================
+   Leaderboard Table
+================================================== */
+
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.stats-table thead {
+  background: #0f172a;
+}
+
+.stats-table th {
+  padding: 16px;
+
+  color: #94a3b8;
+  text-align: left;
+
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.stats-table td {
+  padding: 18px 16px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stats-table tbody tr {
+  transition: 0.25s;
+}
+
+.stats-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* Gold / Silver / Bronze */
+
+.stats-table tbody tr:nth-child(1) {
+  background: rgba(245, 158, 11, 0.18);
+}
+
+.stats-table tbody tr:nth-child(2) {
+  background: rgba(156, 163, 175, 0.18);
+}
+
+.stats-table tbody tr:nth-child(3) {
+  background: rgba(180, 83, 9, 0.18);
+}
+
+/* Alignment */
+
+/* ===================================
+   Table Alignment
+=================================== */
+
+.stats-table th:nth-child(1),
+.stats-table td:nth-child(1) {
+  width: 60px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.stats-table th:nth-child(2),
+.stats-table td:nth-child(2) {
+  text-align: left;
+  white-space: nowrap;
+}
+
+.stats-table th:nth-child(3),
+.stats-table td:nth-child(3) {
+  text-align: center;
+}
+
+.stats-table th:nth-child(4),
+.stats-table td:nth-child(4) {
+  text-align: right;
+}
+
+.stat-value {
+  color: #ef4444;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.stats-loading {
+  padding: 40px;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 1rem;
+}
+
+/* ==================================================
+   Division Badges
+================================================== */
+
+.division-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 95px;
+
+  padding: 6px 12px;
+
+  border-radius: 999px;
+
+  white-space: nowrap;
+
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.division-premier {
+  background: rgba(220, 38, 38, 0.18);
+  color: #f87171;
+}
+
+.division-1 {
+  background: rgba(249, 115, 22, 0.18);
+  color: #fb923c;
+}
+
+.division-2 {
+  background: rgba(234, 179, 8, 0.18);
+  color: #facc15;
+}
+
+.division-3 {
+  background: rgba(34, 197, 94, 0.18);
+  color: #4ade80;
+}
+
+.division-4 {
+  background: rgba(59, 130, 246, 0.18);
+  color: #60a5fa;
+}
+
+.division-5 {
+  background: rgba(168, 85, 247, 0.18);
+  color: #c084fc;
+}
+
+.division-6 {
+  background: rgba(6, 182, 212, 0.18);
+  color: #22d3ee;
+}
+
+.division-7 {
+  background: rgba(236, 72, 153, 0.18);
+  color: #f472b6;
+}
+
+.division-8 {
+  background: rgba(161, 98, 7, 0.18);
+  color: #d97706;
+}
+
+.division-9 {
+  background: rgba(107, 114, 128, 0.18);
+  color: #d1d5db;
+}
+
+/* ==================================================
+   Responsive
+================================================== */
+
+@media (max-width: 900px) {
+  .statistics-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .statistics-grid-section {
+    padding: 50px 15px;
+  }
+
+  .statistics-hero {
+    min-height: 280px;
+  }
+
+  .statistics-hero p {
+    font-size: 1rem;
+  }
+
+  .stat-card-header {
+    padding: 20px;
+  }
+
+  .stat-card-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 1.25rem;
+  }
+
+  .stat-card-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .stats-table {
+    font-size: 0.85rem;
+  }
+
+  .stats-table th,
+  .stats-table td {
+    padding: 12px 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .stats-table th:nth-child(3),
+  .stats-table td:nth-child(3) {
+    display: none;
+  }
+}

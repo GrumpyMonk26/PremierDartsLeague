@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import Tables from "./pages/Tables";
 import Rules from "./pages/Rules";
 import Fixtures from "./pages/Fixtures";
+import Statistics from "./pages/Statistics";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/tables" element={<Tables />} />
         <Route path="/rules" element={<Rules />} />
         <Route path="/fixtures" element={<Fixtures />} />
+        <Route path="/statistics" element={<Statistics />} />
       </Routes>
 
       <Footer />

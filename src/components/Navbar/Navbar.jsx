@@ -12,21 +12,8 @@ const menuItems = [
     ],
   },
   {
-    title: "Players",
-    links: [
-      { name: "Player Rankings", href: "#rankings" },
-      { name: "Statistics", href: "#statistics" },
-      { name: "Hall of Fame", href: "#halloffame" },
-    ],
-  },
-  {
     title: "Statistics",
-    links: [
-      { name: "180 Leaders", href: "#180s" },
-      { name: "Highest Averages", href: "#averages" },
-      { name: "Highest Checkouts", href: "#checkouts" },
-      { name: "Form Guide", href: "#form" },
-    ],
+    links: [{ name: "Statistics", to: "/statistics" }],
   },
 ];
 
@@ -73,54 +60,46 @@ export default function Navbar() {
               Home
             </Link>
 
-            {menuItems.map((item) => (
-              <div
-                key={item.title}
-                className="dropdown"
-                onMouseLeave={() => setActiveDropdown(null)}
+            <div
+              className="dropdown"
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              <button
+                type="button"
+                className="dropdown__button"
+                onMouseEnter={() => setActiveDropdown("League")}
+                onClick={() => toggleDropdown("League")}
               >
-                <button
-                  type="button"
-                  className="dropdown__button"
-                  onMouseEnter={() => setActiveDropdown(item.title)}
-                  onClick={() => toggleDropdown(item.title)}
+                League
+                <span
+                  className={`dropdown__arrow ${activeDropdown === "League" ? "rotate" : ""}`}
                 >
-                  {item.title}
-                  <span
-                    className={`dropdown__arrow ${activeDropdown === item.title ? "rotate" : ""}`}
-                  >
-                    ▼
-                  </span>
-                </button>
+                  ▼
+                </span>
+              </button>
 
-                <div
-                  className={`dropdown__menu ${activeDropdown === item.title ? "show" : ""}`}
-                >
-                  <div className="dropdown__menu-panel">
-                    {item.links.map((link) =>
-                      link.to ? (
-                        <Link
-                          key={link.name}
-                          to={link.to}
-                          className="dropdown__item"
-                          onClick={() => setActiveDropdown(null)}
-                        >
-                          {link.name}
-                        </Link>
-                      ) : (
-                        <a
-                          key={link.name}
-                          href={link.href}
-                          className="dropdown__item"
-                        >
-                          {link.name}
-                        </a>
-                      ),
-                    )}
-                  </div>
+              <div
+                className={`dropdown__menu ${activeDropdown === "League" ? "show" : ""}`}
+              >
+                <div className="dropdown__menu-panel">
+                  <Link to="/fixtures" className="dropdown__item">
+                    Fixtures
+                  </Link>
+
+                  <Link to="/tables" className="dropdown__item">
+                    Tables
+                  </Link>
+
+                  <Link to="/rules" className="dropdown__item">
+                    Rules
+                  </Link>
                 </div>
               </div>
-            ))}
+            </div>
+
+            <Link to="/statistics" className="nav-link">
+              Statistics
+            </Link>
           </nav>
 
           <div className="navbar__actions">
