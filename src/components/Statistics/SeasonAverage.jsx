@@ -27,7 +27,7 @@ function SeasonAverage() {
 
   return (
     <StatCard
-      title="Best Averages"
+      title="Top 3 Dart Averages"
       icon="📈"
       subtitle="Top 10 season averages across all divisions"
     >
