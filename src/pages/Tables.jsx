@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 import DivisionPicker from "../components/LeagueTables/DivisionPicker";
 import StandingsTable from "../components/LeagueTables/StandingsTable";
@@ -23,10 +24,26 @@ const divisionMap = {
 };
 
 function Tables() {
-  const [activeDivision, setActiveDivision] = useState(divisions[0]);
+  const [searchParams] = useSearchParams();
+
+  const requestedDivision = searchParams.get("division");
+
+  const initialDivision = divisions.includes(requestedDivision)
+    ? requestedDivision
+    : divisions[0];
+
+  const [activeDivision, setActiveDivision] = useState(initialDivision);
   const [players, setPlayers] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Update selected division when URL changes
+  useEffect(() => {
+    if (requestedDivision && divisions.includes(requestedDivision)) {
+      setActiveDivision(requestedDivision);
+    }
+  }, [requestedDivision]);
+
+  // Load table data
   useEffect(() => {
     async function loadTable() {
       setLoading(true);
@@ -36,10 +53,15 @@ function Tables() {
           `${API_URL}?action=table&division=${divisionMap[activeDivision]}`,
         );
 
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+
         const data = await response.json();
         setPlayers(data);
       } catch (err) {
         console.error(err);
+        setPlayers([]);
       } finally {
         setLoading(false);
       }
@@ -52,7 +74,9 @@ function Tables() {
     <section className="league-standings">
       <div className="section-header">
         <span className="section-tag">LEAGUE TABLES</span>
+
         <h2>Division Standings</h2>
+
         <p>Current standings for all divisions.</p>
       </div>
 

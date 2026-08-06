@@ -15,13 +15,14 @@ function Hero() {
         <p>
           Average based divisions designed to create competitive matches for
           every player. Friendly, inclusive and flexible with every fixture
-          played over a 7-day window. All games are organised through Discord.
+          played over a 7-day window. All games are organised through the
+          Discord server.
         </p>
 
         <div className="hero-buttons">
-          <button className="btn-primary">Join The League</button>
+          <button className="btn-discord">Join Our Discord</button>
 
-          <button className="btn-secondary">Current Season</button>
+          <button className="btn-primary">Current Season</button>
         </div>
       </div>
 
