@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import "./CurrentSeason.css";
-import { getCurrentSeason } from "../../services/seasonService";
 import { Link } from "react-router-dom";
+import { getCurrentSeason } from "../../Services/seasonService";
+import "./CurrentSeason.css";
 
 function CurrentSeason() {
   const [divisions, setDivisions] = useState([]);
