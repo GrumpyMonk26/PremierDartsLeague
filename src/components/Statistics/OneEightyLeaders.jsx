@@ -45,23 +45,31 @@ function OneEightyLeaders() {
           </thead>
 
           <tbody>
-            {leaders.map((player) => (
-              <tr key={`${player.player}-${player.position}`}>
-                <td>{player.position}</td>
+            {leaders.map((player) => {
+              const divisionClass = getDivisionClass(player.division);
 
-                <td>{player.player}</td>
+              console.log({
+                player: player.player,
+                division: player.division,
+                className: divisionClass,
+              });
 
-                <td>
-                  <span
-                    className={`division-pill ${getDivisionClass(player.division)}`}
-                  >
-                    {player.division}
-                  </span>
-                </td>
+              return (
+                <tr key={`${player.player}-${player.position}`}>
+                  <td>{player.position}</td>
 
-                <td className="stat-value">{player.value}</td>
-              </tr>
-            ))}
+                  <td>{player.player}</td>
+
+                  <td>
+                    <span className={`division-pill ${divisionClass}`}>
+                      {player.division}
+                    </span>
+                  </td>
+
+                  <td className="stat-value">{player.value}</td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       )}
