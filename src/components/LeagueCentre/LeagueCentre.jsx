@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./LeagueCentre.css";
-import { getLeagueCentre } from "../../Services/LeagueCentreService";
+import { getLeagueCentre } from "../../Services/seasonService";
 
 import {
   latestResults,
