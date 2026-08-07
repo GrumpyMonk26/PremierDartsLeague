@@ -147,3 +147,16 @@
 .centre-card button:hover {
   background: #ef4444;
 }
+
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 80px;
+  white-space: nowrap;
+}
+
+.ticker-item::after {
+  content: "•";
+  margin-left: 40px;
+  color: rgba(255, 255, 255, 0.35);
+}

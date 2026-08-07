@@ -3,7 +3,7 @@ import StatCard from "./StatCard";
 import { getStatistics } from "../../Services/StatisticsService";
 
 function getDivisionClass(division) {
-  if (division === "Premier") {
+  if (division === "Premier" || division === "Premier League") {
     return "division-premier";
   }
 

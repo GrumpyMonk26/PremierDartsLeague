@@ -1,24 +1,73 @@
+import { useEffect, useState } from "react";
 import "./LeagueCentre.css";
+import { getLeagueCentre } from "../../Services/LeagueCentreService";
 
 import {
-  tickerItems,
   latestResults,
   upcomingFixtures,
   spotlight,
-} from "../../data/leagueData.js";
+} from "../../data/leagueData";
 
 function LeagueCentre() {
+  const [liveData, setLiveData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadLeagueCentre() {
+      try {
+        const data = await getLeagueCentre();
+        setLiveData(data);
+      } catch (err) {
+        console.error("Failed to load League Centre:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadLeagueCentre();
+  }, []);
+
+  if (loading) {
+    return (
+      <section className="league-centre">
+        <p>Loading League Centre...</p>
+      </section>
+    );
+  }
+
+  if (!liveData) {
+    return (
+      <section className="league-centre">
+        <p>Unable to load League Centre.</p>
+      </section>
+    );
+  }
+
+  const tickerItems = [
+    `👑 Premier Leader: ${liveData.leader.player} (${liveData.leader.points} pts)`,
+    `🎯 Highest Average: ${liveData.highestAverage.player} • ${Number(
+      liveData.highestAverage.value,
+    ).toFixed(2)}`,
+    `🔥 Highest Checkout: ${liveData.highestCheckout.player} • ${liveData.highestCheckout.value}`,
+    `📊 Season Progress: ${liveData.seasonStats.progress}% Complete`,
+  ];
+
   return (
     <section className="league-centre">
       {/* Live Ticker */}
 
       <div className="live-ticker">
-        <div className="live-label">🔴 LIVE</div>
+        <div className="live-label">
+          <span className="live-dot"></span>
+          LIVE
+        </div>
 
         <div className="ticker-wrapper">
           <div className="ticker-track">
-            {tickerItems.concat(tickerItems).map((item, index) => (
-              <span key={index}>{item}</span>
+            {[...tickerItems, ...tickerItems].map((item, index) => (
+              <span className="ticker-item" key={index}>
+                {item}
+              </span>
             ))}
           </div>
         </div>
