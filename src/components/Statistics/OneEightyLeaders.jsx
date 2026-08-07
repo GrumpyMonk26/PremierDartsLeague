@@ -14,12 +14,30 @@ function OneEightyLeaders() {
   const [leaders, setLeaders] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // useEffect(() => {
+  //   async function loadLeaders() {
+  //     const data = await getStatistics("180s");
+
+  //     setLeaders(data);
+  //     setLoading(false);
+  //   }
+
+  //   loadLeaders();
+  // }, []);
+
   useEffect(() => {
     async function loadLeaders() {
-      const data = await getStatistics("180s");
+      try {
+        const data = await getStatistics("180s");
 
-      setLeaders(data);
-      setLoading(false);
+        console.log("Statistics API returned:", data);
+
+        setLeaders(data);
+      } catch (err) {
+        console.error("Statistics API error:", err);
+      } finally {
+        setLoading(false);
+      }
     }
 
     loadLeaders();
