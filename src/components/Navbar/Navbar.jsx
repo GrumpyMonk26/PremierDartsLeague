@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 
+import PDLLogo from "../../assets/images/PDL_Logo.png";
+
 const menuItems = [
   {
     title: "League",
@@ -25,12 +27,15 @@ export default function Navbar() {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
+
     window.addEventListener("scroll", onScroll);
+
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
     document.body.classList.toggle("menu-open", mobileOpen);
+
     return () => document.body.classList.remove("menu-open");
   }, [mobileOpen]);
 
@@ -40,20 +45,25 @@ export default function Navbar() {
     setMobileSection(null);
   };
 
-  const toggleDropdown = (title) =>
+  const toggleDropdown = (title) => {
     setActiveDropdown((prev) => (prev === title ? null : title));
+  };
 
   return (
     <>
       <header className={`navbar ${scrolled ? "navbar--scrolled" : ""}`}>
-        <div className="navbar__container">
-          <Link to="/" className="navbar__logo" onClick={closeMobileMenu}>
-            <div className="navbar__logo-icon">🎯</div>
-            <div className="navbar__logo-text">
-              <span className="navbar__title">PDL</span>
-              <span className="navbar__subtitle">Premier League Darts</span>
-            </div>
+        <div className="navbar__inner">
+          {/* Logo / Brand */}
+
+          <Link to="/" className="navbar__brand">
+            <img
+              src={PDLLogo}
+              alt="Premier League Darts"
+              className="navbar__logo"
+            />
           </Link>
+
+          {/* Desktop Navigation */}
 
           <nav className="navbar__desktop">
             <Link to="/" className="nav-link">
@@ -72,14 +82,18 @@ export default function Navbar() {
               >
                 League
                 <span
-                  className={`dropdown__arrow ${activeDropdown === "League" ? "rotate" : ""}`}
+                  className={`dropdown__arrow ${
+                    activeDropdown === "League" ? "rotate" : ""
+                  }`}
                 >
                   ▼
                 </span>
               </button>
 
               <div
-                className={`dropdown__menu ${activeDropdown === "League" ? "show" : ""}`}
+                className={`dropdown__menu ${
+                  activeDropdown === "League" ? "show" : ""
+                }`}
               >
                 <div className="dropdown__menu-panel">
                   <Link to="/fixtures" className="dropdown__item">
@@ -102,16 +116,20 @@ export default function Navbar() {
             </Link>
           </nav>
 
+          {/* Desktop Player Hub */}
+
           <div className="navbar__actions">
             <Link to="/dashboard" className="dashboard-btn">
               Player Hub
             </Link>
           </div>
 
+          {/* Mobile Menu Button */}
+
           <button
             type="button"
             className={`hamburger ${mobileOpen ? "open" : ""}`}
-            onClick={() => setMobileOpen((o) => !o)}
+            onClick={() => setMobileOpen((open) => !open)}
             aria-label="Toggle navigation"
           >
             <span></span>
@@ -120,6 +138,8 @@ export default function Navbar() {
           </button>
         </div>
       </header>
+
+      {/* Mobile Menu */}
 
       <div className={`mobile-menu ${mobileOpen ? "show" : ""}`}>
         <Link
@@ -137,6 +157,7 @@ export default function Navbar() {
         {menuItems.map((section) => (
           <div key={section.title} className="mobile-section">
             <button
+              type="button"
               className="mobile-section-title"
               onClick={() =>
                 setMobileSection((prev) =>
@@ -145,11 +166,14 @@ export default function Navbar() {
               }
             >
               <span>{section.title}</span>
+
               <span>{mobileSection === section.title ? "−" : "+"}</span>
             </button>
 
             <div
-              className={`mobile-links ${mobileSection === section.title ? "show" : ""}`}
+              className={`mobile-links ${
+                mobileSection === section.title ? "show" : ""
+              }`}
             >
               {section.links.map((link) =>
                 link.to ? (

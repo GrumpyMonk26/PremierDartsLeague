@@ -19,9 +19,9 @@ function PlayerCard({ player }) {
       <span className="division-badge">{player.player.division}</span>
 
       <div className="player-average">
-        <span>Season Average</span>
+        <span>Best 3 Dart Average</span>
 
-        <h1>{player.player.average}</h1>
+        <h1>{player.player.bestAverage}</h1>
       </div>
 
       <div className="player-details">
@@ -32,9 +32,9 @@ function PlayerCard({ player }) {
         </div>
 
         <div>
-          <span>League Points</span>
+          <span>Best Leg</span>
 
-          <strong>{player.stats.points}</strong>
+          <strong>{player.stats.bestLeg}</strong>
         </div>
       </div>
 

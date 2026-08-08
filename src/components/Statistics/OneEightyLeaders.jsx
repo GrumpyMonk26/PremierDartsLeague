@@ -14,24 +14,10 @@ function OneEightyLeaders() {
   const [leaders, setLeaders] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // useEffect(() => {
-  //   async function loadLeaders() {
-  //     const data = await getStatistics("180s");
-
-  //     setLeaders(data);
-  //     setLoading(false);
-  //   }
-
-  //   loadLeaders();
-  // }, []);
-
   useEffect(() => {
     async function loadLeaders() {
       try {
         const data = await getStatistics("180s");
-
-        console.log("Statistics API returned:", data);
-
         setLeaders(data);
       } catch (err) {
         console.error("Statistics API error:", err);
@@ -63,31 +49,23 @@ function OneEightyLeaders() {
           </thead>
 
           <tbody>
-            {leaders.map((player) => {
-              const divisionClass = getDivisionClass(player.division);
+            {leaders.map((player) => (
+              <tr key={`${player.player}-${player.position}`}>
+                <td>{player.position}</td>
 
-              console.log({
-                player: player.player,
-                division: player.division,
-                className: divisionClass,
-              });
+                <td>{player.player}</td>
 
-              return (
-                <tr key={`${player.player}-${player.position}`}>
-                  <td>{player.position}</td>
+                <td>
+                  <span
+                    className={`division-pill ${getDivisionClass(player.division)}`}
+                  >
+                    {player.division}
+                  </span>
+                </td>
 
-                  <td>{player.player}</td>
-
-                  <td>
-                    <span className={`division-pill ${divisionClass}`}>
-                      {player.division}
-                    </span>
-                  </td>
-
-                  <td className="stat-value">{player.value}</td>
-                </tr>
-              );
-            })}
+                <td className="stat-value">{player.value}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       )}
