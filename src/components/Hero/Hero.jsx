@@ -20,9 +20,25 @@ function Hero() {
         </p>
 
         <div className="hero-buttons">
-          <button className="btn-discord">Join Our Discord</button>
+          <a
+            href="https://discord.gg/aVqnM7FPQ"
+            className="btn-discord"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Join Our Discord
+          </a>
 
-          <button className="btn-primary">Current Season</button>
+          <button
+            className="btn-primary"
+            onClick={() => {
+              document
+                .getElementById("current-season")
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            Current Season
+          </button>
         </div>
       </div>
 

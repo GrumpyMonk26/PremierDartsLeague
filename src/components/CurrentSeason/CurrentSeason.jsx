@@ -20,7 +20,7 @@ function CurrentSeason() {
 
   if (loading) {
     return (
-      <section className="current-season">
+      <section id="current-season" className="current-season">
         <div className="section-header">
           <span className="section-tag">CURRENT SEASON</span>
 

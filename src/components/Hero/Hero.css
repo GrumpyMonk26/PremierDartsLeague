@@ -91,6 +91,8 @@
 
   border: none;
 
+  text-decoration: none;
+
   border-radius: 50px;
 
   cursor: pointer;
@@ -110,6 +112,8 @@
   padding: 15px 40px;
 
   background: #d32f2f;
+
+  text-decoration: none;
 
   color: white;
 
@@ -150,6 +154,10 @@
   background: white;
 
   color: #111;
+}
+
+#current-season {
+  scroll-margin-top: 100px;
 }
 
 .hero-stats {
