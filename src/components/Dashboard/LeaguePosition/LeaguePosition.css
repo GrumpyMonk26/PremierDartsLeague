@@ -1,16 +1,28 @@
 .league-position {
+  width: 100%;
+  max-width: 100%;
+
   background: #1e293b;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 20px;
+
   padding: 35px;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
 }
 
 .league-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   margin-bottom: 35px;
+
   gap: 20px;
+
+  min-width: 0;
 }
 
 .league-header p {
@@ -20,27 +32,68 @@
 
 .position-card {
   text-align: center;
+
   background: #0f172a;
+
   padding: 20px 28px;
+
   border-radius: 15px;
+
   min-width: 120px;
 }
 
+/* ===================================
+   Position
+=================================== */
+
 .position-card span {
   display: block;
+
   color: #94a3b8;
+
   font-size: 0.9rem;
 }
 
 .position-card h1 {
   color: #dc2626;
+
   font-size: 3rem;
+
   margin-top: 10px;
 }
 
+/* ===================================
+   Table Wrapper
+=================================== */
+
+.league-table-wrapper {
+  width: 100%;
+  max-width: 100%;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  -webkit-overflow-scrolling: touch;
+
+  box-sizing: border-box;
+}
+
+/* ===================================
+   League Table
+=================================== */
+
 .league-position table {
   width: 100%;
+
+  /*
+    On small screens the table can be wider
+    than the card and scroll horizontally.
+  */
+  min-width: 720px;
+
   border-collapse: collapse;
+
+  table-layout: auto;
 }
 
 .league-position thead {
@@ -49,14 +102,22 @@
 
 .league-position th {
   padding: 15px;
+
   text-align: left;
+
   color: #94a3b8;
+
   font-weight: 600;
+
+  white-space: nowrap;
 }
 
 .league-position td {
   padding: 18px 15px;
+
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+  white-space: nowrap;
 }
 
 .league-position tbody tr {
@@ -67,9 +128,9 @@
   background: #263447;
 }
 
-/* ==========================
+/* ===================================
    Current Player Highlight
-========================== */
+=================================== */
 
 .current-player {
   font-weight: 700;
@@ -89,7 +150,9 @@
   border-bottom-right-radius: 8px;
 }
 
-/* Promotion (1st & 2nd) */
+/* ===================================
+   Promotion
+=================================== */
 
 .current-player.promotion td {
   background: rgba(34, 197, 94, 0.18);
@@ -99,7 +162,9 @@
   border-left: 5px solid #22c55e;
 }
 
-/* Mid Table (3rd-6th) */
+/* ===================================
+   Mid Table
+=================================== */
 
 .current-player.midtable td {
   background: rgba(245, 158, 11, 0.18);
@@ -109,7 +174,9 @@
   border-left: 5px solid #f59e0b;
 }
 
-/* Relegation (7th & 8th) */
+/* ===================================
+   Relegation
+=================================== */
 
 .current-player.relegation td {
   background: rgba(239, 68, 68, 0.18);
@@ -119,20 +186,25 @@
   border-left: 5px solid #ef4444;
 }
 
-/* Slightly brighten highlighted row on hover */
+/* ===================================
+   Highlight Hover
+=================================== */
 
 .current-player:hover td {
   filter: brightness(1.08);
 }
 
-/* ==========================
+/* ===================================
    Footer
-========================== */
+=================================== */
 
 .league-footer {
   display: flex;
+
   justify-content: space-between;
+
   margin-top: 25px;
+
   font-size: 0.9rem;
 }
 
@@ -144,31 +216,108 @@
   color: #ef4444;
 }
 
-/* ==========================
-   Mobile
-========================== */
+/* ===================================
+   Tablet
+=================================== */
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
+  .league-position {
+    padding: 28px;
+  }
+
   .league-header {
     flex-direction: column;
     align-items: flex-start;
   }
+}
+
+/* ===================================
+   Mobile
+=================================== */
+
+@media (max-width: 768px) {
+  .league-position {
+    width: 100%;
+    max-width: 100%;
+
+    padding: 24px 18px;
+
+    border-radius: 16px;
+  }
+
+  .league-header {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+  }
 
   .position-card {
     width: 100%;
+
+    min-width: 0;
+
+    padding: 20px;
+
+    box-sizing: border-box;
   }
 
-  table {
+  .position-card h1 {
+    font-size: 2.75rem;
+  }
+
+  /*
+    The wrapper scrolls instead of the entire
+    LeaguePosition component.
+  */
+
+  .league-table-wrapper {
+    width: 100%;
+    max-width: 100%;
+
+    overflow-x: auto;
+
+    margin: 0;
+  }
+
+  .league-position table {
+    min-width: 720px;
+
     font-size: 0.9rem;
   }
 
-  th,
-  td {
-    padding: 12px 8px;
+  .league-position th,
+  .league-position td {
+    padding: 12px 10px;
   }
 
   .league-footer {
     flex-direction: column;
+
     gap: 10px;
+  }
+}
+
+/* ===================================
+   Small Mobile
+=================================== */
+
+@media (max-width: 400px) {
+  .league-position {
+    padding: 20px 14px;
+  }
+
+  .league-position table {
+    min-width: 700px;
+  }
+
+  .league-position th,
+  .league-position td {
+    padding: 10px 8px;
+
+    font-size: 0.82rem;
   }
 }
