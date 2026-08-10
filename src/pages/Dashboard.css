@@ -1,18 +1,42 @@
+/* ==================================================
+   Dashboard
+================================================== */
+
 .dashboard {
+  width: 100%;
+  max-width: 100%;
   min-height: 100vh;
 
   background: #0f172a;
-
   color: white;
+
+  box-sizing: border-box;
+
+  overflow-x: hidden;
 }
 
+/* ==================================================
+   Dashboard Placeholder
+================================================== */
+
 .dashboard-placeholder {
+  width: 100%;
+  max-width: 100%;
+
   margin-top: 50px;
   padding: 60px 30px;
+
+  box-sizing: border-box;
+
   background: #1e293b;
+
   border: 1px solid rgba(255, 255, 255, 0.08);
+
   border-radius: 20px;
+
   text-align: center;
+
+  overflow: hidden;
 }
 
 .placeholder-icon {
@@ -27,17 +51,25 @@
 
 .dashboard-placeholder p {
   color: #94a3b8;
+
   max-width: 600px;
+
   margin: 0 auto;
+
   line-height: 1.8;
 }
 
-/* ==========================
+/* ==================================================
    Hero
-========================== */
+================================================== */
 
 .dashboard-hero {
+  width: 100%;
+  max-width: 100%;
+
   padding: 140px 20px 90px;
+
+  box-sizing: border-box;
 
   background: radial-gradient(
     circle at top,
@@ -46,14 +78,19 @@
   );
 
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+  overflow: hidden;
 }
 
 .dashboard-hero-content {
+  width: 100%;
   max-width: 900px;
 
-  margin: auto;
+  margin: 0 auto;
 
   text-align: center;
+
+  box-sizing: border-box;
 }
 
 .dashboard-tag {
@@ -80,6 +117,8 @@
   font-size: clamp(2.5rem, 5vw, 4rem);
 
   margin-bottom: 25px;
+
+  overflow-wrap: anywhere;
 }
 
 .dashboard-hero p {
@@ -92,57 +131,87 @@
   color: #94a3b8;
 
   font-size: 1.1rem;
+
+  overflow-wrap: anywhere;
 }
 
-/* ==========================
+/* ==================================================
    Main Content
-========================== */
+================================================== */
 
 .dashboard-content {
+  width: 100%;
   max-width: 1400px;
 
-  margin: auto;
+  margin: 0 auto;
 
   padding: 60px 20px 100px;
+
+  box-sizing: border-box;
+
+  min-width: 0;
 }
 
-/* ==========================
-   Grid
-========================== */
+/* ==================================================
+   Dashboard Layout
+================================================== */
 
 .dashboard-layout {
+  width: 100%;
+  max-width: 100%;
+
   display: grid;
-  grid-template-columns: 340px 1fr;
+
+  grid-template-columns:
+    minmax(0, 340px)
+    minmax(0, 1fr);
+
   gap: 30px;
+
+  min-width: 0;
 }
 
-.left-column {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
+/* ==================================================
+   Columns
+================================================== */
 
+.left-column,
 .right-column {
+  min-width: 0;
+  max-width: 100%;
+
   display: flex;
   flex-direction: column;
+
   gap: 30px;
+
+  box-sizing: border-box;
 }
+
+/* ==================================================
+   Prevent Components Escaping Grid
+================================================== */
+
+.left-column > *,
+.right-column > * {
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* ==================================================
+   Tablet
+================================================== */
 
 @media (max-width: 1000px) {
   .dashboard-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
-/* ==========================
-   Responsive
-========================== */
-
-@media (max-width: 1000px) {
-  .dashboard-grid {
-    grid-template-columns: 1fr;
-  }
-}
+/* ==================================================
+   Mobile
+================================================== */
 
 @media (max-width: 768px) {
   .dashboard-hero {
@@ -150,6 +219,42 @@
   }
 
   .dashboard-content {
-    padding: 40px 20px 80px;
+    padding: 40px 16px 80px;
+  }
+
+  .dashboard-layout {
+    width: 100%;
+    max-width: 100%;
+
+    grid-template-columns: minmax(0, 1fr);
+
+    gap: 20px;
+  }
+
+  .left-column,
+  .right-column {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    gap: 20px;
+  }
+}
+
+/* ==================================================
+   Small Mobile
+================================================== */
+
+@media (max-width: 480px) {
+  .dashboard-hero {
+    padding: 110px 16px 60px;
+  }
+
+  .dashboard-content {
+    padding: 30px 12px 60px;
+  }
+
+  .dashboard-layout {
+    gap: 16px;
   }
 }
