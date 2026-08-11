@@ -82,7 +82,7 @@
 
 .footer-atlas {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   gap: 10px;
 
   text-decoration: none;
@@ -91,8 +91,10 @@
 .atlas-text {
   font-family: "Cormorant Garamond", serif;
   font-size: 2rem;
-  color: #fff;
+  font-weight: 600;
+  color: #ffffff;
 
+  line-height: 1;
   transition: color 0.25s ease;
 }
 
@@ -101,8 +103,9 @@
   height: 10px;
 
   border-radius: 50%;
-
   background: #ff6b81;
+
+  margin-bottom: 3px;
 
   animation: atlasDot 2.5s ease-in-out infinite;
 }

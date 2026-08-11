@@ -11,7 +11,22 @@ import LastMatch from "../components/Dashboard/LastMatch/LastMatch";
 import LeaguePosition from "../components/Dashboard/LeaguePosition/LeaguePosition";
 
 function Dashboard() {
-  const [selectedPlayer, setSelectedPlayer] = useState(null);
+  const [selectedPlayer, setSelectedPlayer] = useState(() => {
+    const savedPlayer = localStorage.getItem("rememberedPlayer");
+
+    if (!savedPlayer) {
+      return null;
+    }
+
+    try {
+      return JSON.parse(savedPlayer);
+    } catch (error) {
+      console.error("Failed to load remembered player:", error);
+      localStorage.removeItem("rememberedPlayer");
+      return null;
+    }
+  });
+
   const [playerData, setPlayerData] = useState(null);
 
   useEffect(() => {
@@ -42,9 +57,8 @@ function Dashboard() {
 
           <p>
             Search for your player profile to view your latest league
-            statistics, results and standings. Soon you'll be able to save your
-            favourite player so your dashboard loads automatically every time
-            you visit.
+            statistics, results and standings. Remember your player on this
+            device and your dashboard will load automatically when you return.
           </p>
         </div>
       </section>
@@ -64,7 +78,7 @@ function Dashboard() {
         ) : playerData ? (
           <div className="dashboard-layout">
             <div className="left-column">
-              <PlayerCard player={playerData} />
+              <PlayerCard player={playerData} selectedPlayer={selectedPlayer} />
               <QuickStats player={playerData} />
             </div>
 

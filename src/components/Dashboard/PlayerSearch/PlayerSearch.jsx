@@ -7,7 +7,6 @@ import { searchPlayers } from "../../../Services/PlayerSearchService";
 function PlayerSearch({ onPlayerSelected }) {
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
-  const [remember, setRemember] = useState(false);
   const [loading, setLoading] = useState(false);
   const [searched, setSearched] = useState(false);
 
@@ -61,28 +60,11 @@ function PlayerSearch({ onPlayerSelected }) {
    * Select player
    */
   const handlePlayerSelected = (player) => {
-    if (remember) {
-      localStorage.setItem("rememberedPlayer", JSON.stringify(player));
-    } else {
-      localStorage.removeItem("rememberedPlayer");
-    }
-
     setSearch("");
     setResults([]);
     setSearched(false);
 
     onPlayerSelected?.(player);
-  };
-
-  /*
-   * Remember player
-   */
-  const handleRememberChange = (checked) => {
-    setRemember(checked);
-
-    if (!checked) {
-      localStorage.removeItem("rememberedPlayer");
-    }
   };
 
   return (
@@ -161,18 +143,7 @@ function PlayerSearch({ onPlayerSelected }) {
 
       {/* Remember player */}
 
-      <div className="remember-player">
-        <input
-          type="checkbox"
-          id="rememberPlayer"
-          checked={remember}
-          onChange={(e) => handleRememberChange(e.target.checked)}
-        />
-
-        <label htmlFor="rememberPlayer">
-          Remember my player on this device
-        </label>
-      </div>
+      <div className="remember-player"></div>
     </section>
   );
 }

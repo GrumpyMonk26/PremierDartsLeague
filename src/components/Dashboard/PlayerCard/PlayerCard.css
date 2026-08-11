@@ -212,6 +212,14 @@
   transform: translateY(-2px);
 }
 
+.favourite-button.remembered {
+  background: #16a34a;
+}
+
+.favourite-button.remembered:hover {
+  background: #22c55e;
+}
+
 /* ==================================================
    Tablet
 ================================================== */
