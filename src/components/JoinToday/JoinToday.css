@@ -124,30 +124,95 @@
   transform: translateY(-3px);
 }
 
+.join-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  margin-top: 40px;
+}
+
+/* Discord - Primary CTA */
 .btn-discord {
-  padding: 15px 40px;
+  min-width: 320px;
+
+  padding: 18px 42px;
 
   background: #5865f2;
-
   color: white;
 
   border: none;
+  border-radius: 50px;
 
   text-decoration: none;
 
-  border-radius: 50px;
-
   cursor: pointer;
 
-  font-size: 1rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  font-family: inherit;
 
-  transition: 0.3s;
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .btn-discord:hover {
   background: #4752c4;
 
   transform: translateY(-3px);
+
+  box-shadow: 0 8px 25px rgba(88, 101, 242, 0.3);
+}
+
+/* Suggest Improvement - Secondary CTA */
+.improvement-btn {
+  min-width: 320px;
+
+  padding: 18px 42px;
+
+  background: #2a354d;
+  color: #ffffff;
+
+  border: 1px solid rgba(255, 107, 129, 0.45);
+  border-radius: 50px;
+
+  cursor: pointer;
+
+  font-size: 1.15rem;
+  font-weight: 600;
+  font-family: inherit;
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.improvement-btn:hover {
+  background: #ff3341;
+  border-color: #ff3341;
+
+  transform: translateY(-3px);
+
+  box-shadow: 0 8px 25px rgba(255, 51, 65, 0.3);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .join-buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .btn-discord,
+  .improvement-btn {
+    width: 100%;
+    max-width: 320px;
+  }
 }
 
 @media (max-width: 768px) {

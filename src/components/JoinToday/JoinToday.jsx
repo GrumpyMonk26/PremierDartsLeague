@@ -1,6 +1,10 @@
+import { useState } from "react";
 import "./JoinToday.css";
+import SuggestionModal from "../SuggestionModal/SuggestionModal";
 
 function JoinToday() {
+  const [showSuggestionModal, setShowSuggestionModal] = useState(false);
+
   return (
     <section className="join">
       <div className="join-overlay"></div>
@@ -28,7 +32,12 @@ function JoinToday() {
         </div>
 
         <div className="join-buttons">
-          {/* <button className="join-btn">Join The League</button> */}
+          <button
+            className="improvement-btn"
+            onClick={() => setShowSuggestionModal(true)}
+          >
+            Suggest an Improvement
+          </button>
 
           <a
             href="https://discord.gg/aVqnM7FPQ"
@@ -40,6 +49,11 @@ function JoinToday() {
           </a>
         </div>
       </div>
+
+      <SuggestionModal
+        isOpen={showSuggestionModal}
+        onClose={() => setShowSuggestionModal(false)}
+      />
     </section>
   );
 }

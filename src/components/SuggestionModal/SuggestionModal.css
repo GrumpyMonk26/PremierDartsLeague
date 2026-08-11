@@ -1,0 +1,471 @@
+/* ==================================================
+   Suggestion Modal
+================================================== */
+
+.suggestion-modal-overlay {
+  position: fixed;
+  inset: 0;
+
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(2, 6, 23, 0.78);
+
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  animation: suggestionFadeIn 0.2s ease;
+}
+
+/* ==================================================
+   Modal
+================================================== */
+
+.suggestion-modal {
+  width: 100%;
+  max-width: 560px;
+
+  background: #1e293b;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  border-radius: 20px;
+
+  padding: 35px;
+
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.45),
+    0 0 40px rgba(255, 107, 129, 0.08);
+
+  position: relative;
+
+  animation: suggestionSlideIn 0.25s ease;
+}
+
+/* ==================================================
+   Header
+================================================== */
+
+.suggestion-modal-header {
+  margin-bottom: 25px;
+}
+
+.suggestion-modal-header h2 {
+  margin: 0 0 10px;
+
+  color: #ffffff;
+
+  font-size: 1.8rem;
+
+  line-height: 1.2;
+}
+
+.suggestion-modal-header p {
+  margin: 0;
+
+  color: #94a3b8;
+
+  font-size: 0.95rem;
+
+  line-height: 1.6;
+}
+
+/* ==================================================
+   Close Button
+================================================== */
+
+.suggestion-modal-close {
+  position: absolute;
+
+  top: 18px;
+  right: 20px;
+
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.06);
+
+  color: #94a3b8;
+
+  font-size: 1.4rem;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.suggestion-modal-close:hover {
+  background: rgba(220, 38, 38, 0.2);
+
+  color: #ffffff;
+
+  transform: rotate(90deg);
+}
+
+/* ==================================================
+   Form
+================================================== */
+
+.suggestion-form {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+/* ==================================================
+   Form Groups
+================================================== */
+
+.suggestion-form-group {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.suggestion-form-group label {
+  color: #ffffff;
+
+  font-size: 0.9rem;
+
+  font-weight: 600;
+}
+
+/* ==================================================
+   Inputs
+================================================== */
+
+.suggestion-form-group input,
+.suggestion-form-group textarea {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 14px 16px;
+
+  background: #0f172a;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  border-radius: 12px;
+
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 1rem;
+
+  outline: none;
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.suggestion-form-group input {
+  min-height: 50px;
+}
+
+.suggestion-form-group textarea {
+  min-height: 150px;
+
+  resize: vertical;
+
+  line-height: 1.5;
+}
+
+/* ==================================================
+   Placeholder
+================================================== */
+
+.suggestion-form-group input::placeholder,
+.suggestion-form-group textarea::placeholder {
+  color: #64748b;
+}
+
+/* ==================================================
+   Input Focus
+================================================== */
+
+.suggestion-form-group input:focus,
+.suggestion-form-group textarea:focus {
+  border-color: #ff6b81;
+
+  background: #111c30;
+
+  box-shadow: 0 0 0 3px rgba(255, 107, 129, 0.12);
+}
+
+/* ==================================================
+   Character / Helper Text
+================================================== */
+
+.suggestion-form-help {
+  margin-top: -2px;
+
+  color: #64748b;
+
+  font-size: 0.8rem;
+}
+
+/* ==================================================
+   Buttons
+================================================== */
+
+.suggestion-form-buttons {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 12px;
+
+  margin-top: 5px;
+}
+
+/* Cancel */
+
+.suggestion-cancel-btn {
+  padding: 13px 24px;
+
+  background: transparent;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  border-radius: 50px;
+
+  color: #cbd5e1;
+
+  font-family: inherit;
+
+  font-size: 0.95rem;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.suggestion-cancel-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+
+  border-color: rgba(255, 255, 255, 0.2);
+
+  color: #ffffff;
+
+  transform: translateY(-2px);
+}
+
+/* Submit */
+
+.suggestion-submit-btn {
+  padding: 13px 28px;
+
+  background: #dc2626;
+
+  border: 1px solid #dc2626;
+
+  border-radius: 50px;
+
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 0.95rem;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.suggestion-submit-btn:hover {
+  background: #ef4444;
+
+  border-color: #ef4444;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 8px 20px rgba(220, 38, 38, 0.3);
+}
+
+.suggestion-submit-btn:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+
+  transform: none;
+
+  box-shadow: none;
+}
+
+/* ==================================================
+   Success Message
+================================================== */
+
+.suggestion-success {
+  text-align: center;
+
+  padding: 20px 0;
+}
+
+.suggestion-success-icon {
+  width: 60px;
+  height: 60px;
+
+  margin: 0 auto 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: rgba(34, 197, 94, 0.15);
+
+  border: 1px solid rgba(34, 197, 94, 0.3);
+
+  font-size: 1.7rem;
+}
+
+.suggestion-success h3 {
+  margin: 0 0 10px;
+
+  color: #ffffff;
+
+  font-size: 1.4rem;
+}
+
+.suggestion-success p {
+  margin: 0;
+
+  color: #94a3b8;
+
+  line-height: 1.6;
+}
+
+/* ==================================================
+   Error Message
+================================================== */
+
+.suggestion-error {
+  padding: 12px 15px;
+
+  background: rgba(220, 38, 38, 0.12);
+
+  border: 1px solid rgba(220, 38, 38, 0.3);
+
+  border-radius: 10px;
+
+  color: #fca5a5;
+
+  font-size: 0.9rem;
+
+  line-height: 1.4;
+}
+
+/* ==================================================
+   Animations
+================================================== */
+
+@keyframes suggestionFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes suggestionSlideIn {
+  from {
+    opacity: 0;
+
+    transform: translateY(20px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ==================================================
+   Mobile
+================================================== */
+
+@media (max-width: 600px) {
+  .suggestion-modal-overlay {
+    padding: 15px;
+  }
+
+  .suggestion-modal {
+    padding: 28px 20px;
+
+    border-radius: 18px;
+
+    max-height: calc(100vh - 30px);
+
+    overflow-y: auto;
+  }
+
+  .suggestion-modal-header {
+    padding-right: 35px;
+
+    margin-bottom: 22px;
+  }
+
+  .suggestion-modal-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .suggestion-modal-header p {
+    font-size: 0.9rem;
+  }
+
+  .suggestion-form-buttons {
+    flex-direction: column-reverse;
+
+    gap: 10px;
+  }
+
+  .suggestion-cancel-btn,
+  .suggestion-submit-btn {
+    width: 100%;
+
+    min-height: 50px;
+  }
+}
