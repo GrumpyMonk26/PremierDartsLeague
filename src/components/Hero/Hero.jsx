@@ -30,11 +30,13 @@ function Hero() {
           </a>
 
           <button
+            type="button"
             className="btn-primary"
             onClick={() => {
-              document
-                .getElementById("current-season")
-                ?.scrollIntoView({ behavior: "smooth" });
+              document.getElementById("current-season")?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
             }}
           >
             Current Season

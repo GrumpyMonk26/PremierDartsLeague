@@ -28,9 +28,16 @@ function JoinToday() {
         </div>
 
         <div className="join-buttons">
-          <button className="join-btn">Join The League</button>
+          {/* <button className="join-btn">Join The League</button> */}
 
-          <button className="discord-btn">Join Discord</button>
+          <a
+            href="https://discord.gg/aVqnM7FPQ"
+            className="btn-discord"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Join Our Discord
+          </a>
         </div>
       </div>
     </section>

@@ -124,14 +124,16 @@
   transform: translateY(-3px);
 }
 
-.discord-btn {
-  background: transparent;
+.btn-discord {
+  padding: 15px 40px;
 
-  border: 2px solid white;
+  background: #5865f2;
 
   color: white;
 
-  padding: 18px 45px;
+  border: none;
+
+  text-decoration: none;
 
   border-radius: 50px;
 
@@ -142,10 +144,10 @@
   transition: 0.3s;
 }
 
-.discord-btn:hover {
-  background: white;
+.btn-discord:hover {
+  background: #4752c4;
 
-  color: #111827;
+  transform: translateY(-3px);
 }
 
 @media (max-width: 768px) {
