@@ -4,9 +4,14 @@ import "./SuggestionModal.css";
 function SuggestionModal({ isOpen, onClose }) {
   const [discordName, setDiscordName] = useState("");
   const [suggestion, setSuggestion] = useState("");
+  const [website, setWebsite] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (website.trim()) {
+      return;
+    }
 
     if (!discordName.trim() || !suggestion.trim()) {
       return;
@@ -84,6 +89,20 @@ function SuggestionModal({ isOpen, onClose }) {
 
         <form className="suggestion-form" onSubmit={handleSubmit}>
           {/* Discord Name */}
+
+          <div className="honeypot-field" aria-hidden="true">
+            <label htmlFor="website">Website</label>
+
+            <input
+              id="website"
+              name="website"
+              type="text"
+              value={website}
+              onChange={(e) => setWebsite(e.target.value)}
+              tabIndex="-1"
+              autoComplete="off"
+            />
+          </div>
 
           <div className="suggestion-form-group">
             <label htmlFor="discordName">Discord Name</label>

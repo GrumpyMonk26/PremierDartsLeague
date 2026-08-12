@@ -15,8 +15,26 @@ export default async (request) => {
   }
 
   try {
-    const { discordName, suggestion } = await request.json();
+    const { discordName, suggestion, website } = await request.json();
 
+    // Honeypot spam protection
+    // Genuine users should leave this field empty.
+    if (website && website.trim()) {
+      return new Response(
+        JSON.stringify({
+          success: true,
+          message: "Suggestion submitted successfully.",
+        }),
+        {
+          status: 200,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
+    }
+
+    // Validate required fields
     if (!discordName?.trim() || !suggestion?.trim()) {
       return new Response(
         JSON.stringify({
