@@ -5,24 +5,44 @@ function SuggestionModal({ isOpen, onClose }) {
   const [discordName, setDiscordName] = useState("");
   const [suggestion, setSuggestion] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!discordName.trim() || !suggestion.trim()) {
       return;
     }
 
-    console.log("Suggestion submitted:", {
-      discordName,
-      suggestion,
-    });
+    try {
+      const response = await fetch("/.netlify/functions/submit-suggestion", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          discordName: discordName.trim(),
+          suggestion: suggestion.trim(),
+        }),
+      });
 
-    // EmailJS will be added here later
+      const data = await response.json();
 
-    setDiscordName("");
-    setSuggestion("");
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || "Failed to submit suggestion.");
+      }
 
-    onClose();
+      // Clear the form
+      setDiscordName("");
+      setSuggestion("");
+
+      // Close the modal
+      onClose();
+
+      console.log("Suggestion submitted successfully.");
+    } catch (error) {
+      console.error("Suggestion submission failed:", error);
+
+      alert("Sorry, your suggestion could not be submitted. Please try again.");
+    }
   };
 
   const handleClose = () => {

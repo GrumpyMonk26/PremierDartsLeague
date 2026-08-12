@@ -1,47 +1,56 @@
-/* eslint-disable no-undef */
-
-exports.handler = async (event) => {
-  // Only allow POST requests
-  if (event.httpMethod !== "POST") {
-    return {
-      statusCode: 405,
-      body: JSON.stringify({
+export default async (request) => {
+  if (request.method !== "POST") {
+    return new Response(
+      JSON.stringify({
         success: false,
         message: "Method not allowed",
       }),
-    };
+      {
+        status: 405,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
   }
 
   try {
-    const { discordName, suggestion } = JSON.parse(event.body || "{}");
+    const { discordName, suggestion } = await request.json();
 
-    // Validate the form data
     if (!discordName?.trim() || !suggestion?.trim()) {
-      return {
-        statusCode: 400,
-        body: JSON.stringify({
+      return new Response(
+        JSON.stringify({
           success: false,
           message: "Discord name and suggestion are required.",
         }),
-      };
+        {
+          status: 400,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
     }
 
-    // Get the webhook from Netlify environment variables
     const webhookUrl = process.env.DISCORD_SUGGESTION_WEBHOOK;
 
     if (!webhookUrl) {
       console.error("DISCORD_SUGGESTION_WEBHOOK is not configured.");
 
-      return {
-        statusCode: 500,
-        body: JSON.stringify({
+      return new Response(
+        JSON.stringify({
           success: false,
           message: "Discord webhook is not configured.",
         }),
-      };
+        {
+          status: 500,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
     }
 
-    // Send the suggestion to Discord
     const discordResponse = await fetch(webhookUrl, {
       method: "POST",
       headers: {
@@ -78,31 +87,46 @@ exports.handler = async (event) => {
 
       console.error("Discord webhook error:", discordError);
 
-      return {
-        statusCode: 500,
-        body: JSON.stringify({
+      return new Response(
+        JSON.stringify({
           success: false,
           message: "Failed to send suggestion to Discord.",
         }),
-      };
+        {
+          status: 500,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
     }
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify({
+    return new Response(
+      JSON.stringify({
         success: true,
         message: "Suggestion submitted successfully.",
       }),
-    };
+      {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
   } catch (error) {
     console.error("Suggestion submission error:", error);
 
-    return {
-      statusCode: 500,
-      body: JSON.stringify({
+    return new Response(
+      JSON.stringify({
         success: false,
         message: "Something went wrong while submitting the suggestion.",
       }),
-    };
+      {
+        status: 500,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
   }
 };
