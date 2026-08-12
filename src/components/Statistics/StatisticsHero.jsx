@@ -6,7 +6,7 @@ function StatisticsHero() {
       <div className="statistics-hero__overlay"></div>
 
       <div className="statistics-hero__content">
-        <span className="statistics-hero__tag">PREMIER LEAGUE DARTS</span>
+        <span className="statistics-hero__tag">PREMIER DARTS LEAGUE</span>
 
         <h1>League Statistics</h1>
 

@@ -4,7 +4,7 @@ export default function FixturesHero() {
   return (
     <section className="fixtures-hero">
       <div className="fixtures-hero-content">
-        <p className="fixtures-subtitle">Premier League Darts</p>
+        <p className="fixtures-subtitle">Premier Darts League</p>
 
         <h1 className="fixtures-title">Season 4 Fixtures & Results</h1>
 

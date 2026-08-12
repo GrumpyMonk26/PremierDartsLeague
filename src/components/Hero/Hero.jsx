@@ -8,7 +8,7 @@ function Hero() {
       <div className="hero-content">
         <span className="hero-established">Established 2024</span>
 
-        <h1>Premier League Darts</h1>
+        <h1>Premier Darts League</h1>
 
         <h2>Competitive Online Darts League</h2>
 

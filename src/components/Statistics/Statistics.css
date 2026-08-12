@@ -4,7 +4,7 @@
 
 .statistics-hero {
   position: relative;
-  min-height: 340px;
+  min-height: 450px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,6 +16,7 @@
     url("https://images.unsplash.com/photo-1518391846015-55a9cc003b25?auto=format&fit=crop&w=1600&q=80")
       center/cover no-repeat;
 }
+/* "../../assets/images/Hero_Background.png" */
 
 .statistics-hero__overlay {
   position: absolute;

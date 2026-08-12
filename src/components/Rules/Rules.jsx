@@ -6,7 +6,7 @@ export default function Rules() {
   return (
     <section className="rules">
       <div className="rules__hero">
-        <span className="rules__eyebrow">PREMIER LEAGUE DARTS</span>
+        <span className="rules__eyebrow">PREMIER DARTS LEAGUE</span>
 
         <h2>League Rules</h2>
 

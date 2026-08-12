@@ -140,11 +140,11 @@ function LastMatch({ player }) {
         </div>
       </div>
 
-      <div className="match-actions">
+      {/* <div className="match-actions">
         <button>Match Report</button>
 
         <button>Head-to-Head</button>
-      </div>
+      </div> */}
     </section>
   );
 }
