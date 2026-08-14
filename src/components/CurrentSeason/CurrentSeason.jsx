@@ -37,7 +37,7 @@ function CurrentSeason() {
       <div className="section-header">
         <span className="section-tag">CURRENT SEASON</span>
 
-        <h2>Season 4 Dashboard</h2>
+        <h2>Season 7 Dashboard</h2>
 
         <p>Live league information updated throughout the week.</p>
       </div>

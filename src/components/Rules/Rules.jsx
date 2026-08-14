@@ -49,7 +49,7 @@ export default function Rules() {
         <h2>Play Hard. Play Fair.</h2>
 
         <p>
-          Premier League Darts is built around friendly competition, respect and
+          Premier Darts League is built around friendly competition, respect and
           a shared love of the game.
         </p>
 

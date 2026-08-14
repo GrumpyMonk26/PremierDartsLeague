@@ -10,7 +10,7 @@ function JoinToday() {
       <div className="join-overlay"></div>
 
       <div className="join-content">
-        <span className="section-tag">JOIN PREMIER LEAGUE DARTS</span>
+        <span className="section-tag">JOIN PREMIER DARTS LEAGUE</span>
 
         <h2>Ready to Step Up to the Oche?</h2>
 
