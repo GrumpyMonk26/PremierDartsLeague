@@ -56,7 +56,7 @@ function Seo() {
     const metadata = pageMetadata[pathname] || pageMetadata["/"];
     const title = `${metadata.title} | ${siteName}`;
     const pageUrl = new URL(pathname, window.location.origin).href;
-    const imageUrl = new URL("/pdl-social-preview.png", window.location.origin)
+    const imageUrl = new URL("/PDL_Social.png", window.location.origin)
       .href;
 
     document.title = title;
