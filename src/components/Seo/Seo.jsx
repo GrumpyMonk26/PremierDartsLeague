@@ -3,11 +3,11 @@ import { useLocation } from "react-router-dom";
 
 const siteName = "Premier Darts League";
 const defaultDescription =
-  "Premier Darts League is a competitive online darts league. Follow live tables, fixtures, results, player statistics and league news.";
+  "Join Premier Darts League, a competitive online darts league. Follow live tables, fixtures, results, player statistics and league news.";
 
 const pageMetadata = {
   "/": {
-    title: "Competitive Online Darts League",
+    title: "Online Darts League",
     description: defaultDescription,
   },
   "/dashboard": {
