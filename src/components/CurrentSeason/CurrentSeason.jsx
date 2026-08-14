@@ -66,9 +66,9 @@ function CurrentSeason() {
                 </p>
 
                 <p>
-                  <strong>Played</strong>
+                  <strong>Best Leg</strong>
                   <br />
-                  {division.played} of {division.total}
+                  {division.bestLeg}
                 </p>
               </div>
 
