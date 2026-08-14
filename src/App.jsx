@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
+import Seo from "./components/Seo/Seo";
 
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
@@ -14,6 +15,7 @@ import Statistics from "./pages/Statistics";
 function App() {
   return (
     <>
+      <Seo />
       <ScrollToTop />
 
       <Navbar />
