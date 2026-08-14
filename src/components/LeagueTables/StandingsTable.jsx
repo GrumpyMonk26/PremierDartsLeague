@@ -19,6 +19,7 @@ function StandingsTable({ division, players }) {
               <th className="align-left">Player</th>
               <th>P</th>
               <th>W</th>
+              <th>D</th>
               <th>L</th>
               <th>LF</th>
               <th>LA</th>
@@ -44,6 +45,7 @@ function StandingsTable({ division, players }) {
                   <td className="align-left player-name">{player.name}</td>
                   <td>{player.played}</td>
                   <td>{player.won}</td>
+                  <td>{player.draws}</td>
                   <td>{player.lost}</td>
                   <td>{player.legsFor}</td>
                   <td>{player.legsAgainst}</td>
