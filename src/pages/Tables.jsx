@@ -3,54 +3,98 @@ import { useSearchParams } from "react-router-dom";
 
 import DivisionPicker from "../components/LeagueTables/DivisionPicker";
 import StandingsTable from "../components/LeagueTables/StandingsTable";
-import { divisions } from "../data/standingsData";
 
 import "./Tables.css";
 
 const API_URL =
   "https://script.google.com/macros/s/AKfycbxslvCGJ8xamcP1F9I6HqS1aKLhxfrugpuEYE03SeLzmZz-xaB7OQJwIXBpZTNVe2Q5sg/exec";
 
-const divisionMap = {
-  "Premier League": "premier",
-  "Division 1": "div1",
-  "Division 2": "div2",
-  "Division 3": "div3",
-  "Division 4": "div4",
-  "Division 5": "div5",
-  "Division 6": "div6",
-  "Division 7": "div7",
-  "Division 8": "div8",
-  "Division 9": "div9",
-};
-
 function Tables() {
   const [searchParams] = useSearchParams();
 
   const requestedDivision = searchParams.get("division");
 
-  const initialDivision = divisions.includes(requestedDivision)
-    ? requestedDivision
-    : divisions[0];
-
-  const [activeDivision, setActiveDivision] = useState(initialDivision);
+  const [activeDivisionConfigs, setActiveDivisionConfigs] = useState([]);
+  const [activeDivision, setActiveDivision] = useState(null);
   const [players, setPlayers] = useState([]);
-  const [loading, setLoading] = useState(true);
 
-  // Update selected division when URL changes
+  const [divisionsLoading, setDivisionsLoading] = useState(true);
+  const [tableLoading, setTableLoading] = useState(false);
+
+  // Load active divisions from Google Apps Script
   useEffect(() => {
-    if (requestedDivision && divisions.includes(requestedDivision)) {
-      setActiveDivision(requestedDivision);
+    async function loadActiveDivisions() {
+      try {
+        const response = await fetch(`${API_URL}?action=activedivisions`);
+
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (!data.success || !Array.isArray(data.divisions)) {
+          throw new Error("Invalid active divisions response");
+        }
+
+        setActiveDivisionConfigs(data.divisions);
+      } catch (error) {
+        console.error("Failed to load active divisions:", error);
+        setActiveDivisionConfigs([]);
+      } finally {
+        setDivisionsLoading(false);
+      }
     }
-  }, [requestedDivision]);
 
-  // Load table data
+    loadActiveDivisions();
+  }, []);
+
+  // Select the requested division or default to the first active division
   useEffect(() => {
+    if (activeDivisionConfigs.length === 0) {
+      setActiveDivision(null);
+      return;
+    }
+
+    const activeDivisionNames = activeDivisionConfigs.map(
+      (division) => division.divisionName,
+    );
+
+    const requestedIsActive = activeDivisionNames.includes(requestedDivision);
+
+    setActiveDivision((currentDivision) => {
+      if (requestedIsActive) {
+        return requestedDivision;
+      }
+
+      if (currentDivision && activeDivisionNames.includes(currentDivision)) {
+        return currentDivision;
+      }
+
+      return activeDivisionNames[0];
+    });
+  }, [activeDivisionConfigs, requestedDivision]);
+
+  // Load table data for the selected division
+  useEffect(() => {
+    if (!activeDivision) {
+      return;
+    }
+
+    const selectedDivision = activeDivisionConfigs.find(
+      (division) => division.divisionName === activeDivision,
+    );
+
+    if (!selectedDivision) {
+      return;
+    }
+
     async function loadTable() {
-      setLoading(true);
+      setTableLoading(true);
 
       try {
         const response = await fetch(
-          `${API_URL}?action=table&division=${divisionMap[activeDivision]}`,
+          `${API_URL}?action=table&division=${selectedDivision.key}`,
         );
 
         if (!response.ok) {
@@ -58,17 +102,22 @@ function Tables() {
         }
 
         const data = await response.json();
+
         setPlayers(data);
-      } catch (err) {
-        console.error(err);
+      } catch (error) {
+        console.error("Failed to load table:", error);
         setPlayers([]);
       } finally {
-        setLoading(false);
+        setTableLoading(false);
       }
     }
 
     loadTable();
-  }, [activeDivision]);
+  }, [activeDivision, activeDivisionConfigs]);
+
+  const activeDivisionNames = activeDivisionConfigs.map(
+    (division) => division.divisionName,
+  );
 
   return (
     <section className="league-standings">
@@ -80,16 +129,24 @@ function Tables() {
         <p>Current standings for all divisions.</p>
       </div>
 
-      <DivisionPicker
-        divisions={divisions}
-        activeDivision={activeDivision}
-        onSelect={setActiveDivision}
-      />
-
-      {loading ? (
-        <p>Loading table...</p>
+      {divisionsLoading ? (
+        <p>Loading divisions...</p>
+      ) : activeDivisionNames.length === 0 ? (
+        <p>No divisions are currently active.</p>
       ) : (
-        <StandingsTable division={activeDivision} players={players} />
+        <>
+          <DivisionPicker
+            divisions={activeDivisionNames}
+            activeDivision={activeDivision}
+            onSelect={setActiveDivision}
+          />
+
+          {tableLoading ? (
+            <p>Loading table...</p>
+          ) : (
+            <StandingsTable division={activeDivision} players={players} />
+          )}
+        </>
       )}
     </section>
   );
