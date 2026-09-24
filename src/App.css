@@ -26,15 +26,21 @@ body {
   min-height: 100vh;
 }
 
+/* Main application wrapper */
 #root {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-/* Main content fills the available viewport height */
+/* Page content takes up remaining available space */
 .main-content {
-  flex: 1;
+  flex: 1 0 auto;
   width: 100%;
   min-width: 0;
+}
+
+/* Push footer to the bottom when content is short */
+.footer {
+  margin-top: auto;
 }
