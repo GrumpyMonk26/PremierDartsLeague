@@ -9,36 +9,78 @@ import {
   FixturesList,
 } from "../components/Fixtures";
 
-import { getFixtures } from "../Services/FixturesServices";
+import { getFixtures, getActiveDivisions } from "../Services/FixturesServices";
 
 export default function Fixtures() {
-  const divisions = [
-    { key: "premier", name: "Premier" },
-    { key: "div1", name: "Division 1" },
-    { key: "div2", name: "Division 2" },
-    { key: "div3", name: "Division 3" },
-    { key: "div4", name: "Division 4" },
-    { key: "div5", name: "Division 5" },
-    { key: "div6", name: "Division 6" },
-    { key: "div7", name: "Division 7" },
-    { key: "div8", name: "Division 8" },
-    { key: "div9", name: "Division 9" },
-  ];
-
+  const [divisions, setDivisions] = useState([]);
   const [fixtures, setFixtures] = useState([]);
-  const [selectedDivision, setSelectedDivision] = useState(divisions[0].key);
+
+  const [selectedDivision, setSelectedDivision] = useState(null);
   const [selectedWeek, setSelectedWeek] = useState(1);
 
+  const [divisionsLoading, setDivisionsLoading] = useState(true);
+  const [fixturesLoading, setFixturesLoading] = useState(false);
+
+  // Load active divisions from Google Apps Script
   useEffect(() => {
+    async function loadDivisions() {
+      try {
+        const data = await getActiveDivisions();
+
+        const formattedDivisions = data.map((division) => ({
+          key: division.key,
+          name: division.key === "premier" ? "Premier" : division.divisionName,
+        }));
+
+        setDivisions(formattedDivisions);
+
+        // Select the first active division by default
+        if (formattedDivisions.length > 0) {
+          setSelectedDivision((currentDivision) => {
+            const stillActive = formattedDivisions.some(
+              (division) => division.key === currentDivision,
+            );
+
+            return stillActive ? currentDivision : formattedDivisions[0].key;
+          });
+        }
+      } catch (error) {
+        console.error("Failed to load divisions:", error);
+        setDivisions([]);
+      } finally {
+        setDivisionsLoading(false);
+      }
+    }
+
+    loadDivisions();
+  }, []);
+
+  // Load fixtures when the selected division changes
+  useEffect(() => {
+    if (!selectedDivision) {
+      return;
+    }
+
     async function loadFixtures() {
-      const data = await getFixtures(selectedDivision);
+      setFixturesLoading(true);
 
-      console.log("Fixtures API:", data);
+      try {
+        const data = await getFixtures(selectedDivision);
 
-      setFixtures(data);
+        console.log("Fixtures API:", data);
 
-      if (data.length > 0) {
-        setSelectedWeek(data[0].week);
+        setFixtures(data);
+
+        if (data.length > 0) {
+          setSelectedWeek(data[0].week);
+        } else {
+          setSelectedWeek(1);
+        }
+      } catch (error) {
+        console.error("Failed to load fixtures:", error);
+        setFixtures([]);
+      } finally {
+        setFixturesLoading(false);
       }
     }
 
@@ -46,18 +88,14 @@ export default function Fixtures() {
   }, [selectedDivision]);
 
   // Get available weeks from the loaded fixtures
-  const weeks = [...new Set(fixtures.map((f) => f.week))].sort((a, b) => a - b);
+  const weeks = [...new Set(fixtures.map((fixture) => fixture.week))].sort(
+    (a, b) => a - b,
+  );
 
   // Filter fixtures for the selected week
   const filteredFixtures = fixtures.filter(
     (fixture) => fixture.week === selectedWeek,
   );
-
-  console.log("Selected Division:", selectedDivision);
-  console.log("Selected Week:", selectedWeek);
-  console.log("Weeks:", weeks);
-  console.log("Fixtures:", fixtures);
-  console.log("Filtered Fixtures:", filteredFixtures);
 
   return (
     <main className="fixtures-page">
@@ -65,21 +103,35 @@ export default function Fixtures() {
 
       <section className="fixtures-content">
         <div className="fixtures-container">
-          <FixturesStats fixtures={filteredFixtures} />
+          {divisionsLoading ? (
+            <p>Loading divisions...</p>
+          ) : divisions.length === 0 ? (
+            <p>No divisions are currently active.</p>
+          ) : (
+            <>
+              <FixturesStats fixtures={filteredFixtures} />
 
-          <DivisionSelector
-            divisions={divisions}
-            selectedDivision={selectedDivision}
-            onDivisionChange={setSelectedDivision}
-          />
+              <DivisionSelector
+                divisions={divisions}
+                selectedDivision={selectedDivision}
+                onDivisionChange={setSelectedDivision}
+              />
 
-          <WeekSelector
-            weeks={weeks}
-            selectedWeek={selectedWeek}
-            onWeekChange={setSelectedWeek}
-          />
+              {fixturesLoading ? (
+                <p>Loading fixtures...</p>
+              ) : (
+                <>
+                  <WeekSelector
+                    weeks={weeks}
+                    selectedWeek={selectedWeek}
+                    onWeekChange={setSelectedWeek}
+                  />
 
-          <FixturesList fixtures={filteredFixtures} />
+                  <FixturesList fixtures={filteredFixtures} />
+                </>
+              )}
+            </>
+          )}
         </div>
       </section>
     </main>

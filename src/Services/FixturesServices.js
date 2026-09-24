@@ -17,3 +17,24 @@ export async function getFixtures(division = "premier") {
     return [];
   }
 }
+
+export async function getActiveDivisions() {
+  try {
+    const response = await fetch(`${API_URL}?action=activedivisions`);
+
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    if (!data.success || !Array.isArray(data.divisions)) {
+      throw new Error("Invalid active divisions response");
+    }
+
+    return data.divisions;
+  } catch (error) {
+    console.error("Failed to load active divisions:", error);
+    return [];
+  }
+}
