@@ -1,12 +1,12 @@
 html,
-body,
-#root {
+body {
   width: 100%;
-  max-width: 100%;
-  min-height: 100%;
+  min-width: 320px;
+  min-height: 100vh;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 *,
@@ -15,32 +15,39 @@ body,
   box-sizing: border-box;
 }
 
-html,
-body {
-  min-height: 100vh;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
-}
-
-body {
-  min-height: 100vh;
-}
-
 /* Main application wrapper */
 #root {
+  width: 100%;
   min-height: 100vh;
+  min-height: 100dvh;
+
   display: flex;
   flex-direction: column;
 }
 
-/* Page content takes up remaining available space */
+/* Main content fills available space */
 .main-content {
   flex: 1 0 auto;
   width: 100%;
   min-width: 0;
 }
 
-/* Push footer to the bottom when content is short */
+/* Footer stays at the bottom when content is short */
 .footer {
+  flex-shrink: 0;
   margin-top: auto;
+}
+
+.app {
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1 0 auto;
+  width: 100%;
+  min-width: 0;
 }
